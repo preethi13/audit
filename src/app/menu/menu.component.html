@@ -1,0 +1,13 @@
+<div class="p-grid" style="font-size: 12px;letter-spacing: normal">
+  <div class="p-col-8 p-md-2 p-lg-2">
+    <div class="box box-stretched">
+      <p-panelMenu [transitionOptions]="'0ms'" [model]="items" [style]="{'width':'100%'}" [multiple]="false">
+      </p-panelMenu>
+    </div>
+  </div>
+  <div class="p-col-12 p-md-10 p-lg-10">
+    <div class="box box-stretched">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

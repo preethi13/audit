@@ -1,0 +1,130 @@
+<p-tabView>
+  <p-tabPanel header="Audit Head">
+
+    <h2 align="center" style="font-weight: 600">Audit</h2>
+    <h5 align="center">Department name : Public Health </h5>
+    <h5 align="center">Year : 2015</h5>
+    <h2 align="center" style="font-weight:600"> Pre Audit</h2>
+    <h5 align="center">Category : Expenditure</h5>
+    <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true" [rows]="10"
+    sortMode="multiple" [responsive]="true">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <td colspan="2">Aggregated Risk Score</td>
+            <td>18B</td>
+            <td></td>
+        </tr>
+      </ng-template>
+  </p-table>
+  </p-tabPanel>
+  <p-tabPanel header="Execution">
+    <h3>Execution</h3>
+
+    <p-table [value]="preAuditDat" dataKey="department">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Category</th>
+          <th>Observation</th>
+          <th>Specific Parameter</th>
+          <th>Response</th>
+          <th>Status</th>
+          <th>Resource File</th>
+          <th style="width:8em"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.category">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.category}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.observation">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.observation}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.specificParameter">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.specificParameter}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.response">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.response}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.status">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.status}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="file" [(ngModel)]="rowData.resourceFile">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.resourceFile}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td style="width:10%">
+            <button class="btn btn-success" (click)="edit(rowData)" style="font-size:smaller;width:35px;margin-right:.5rem"><i class="pi pi-check"></i></button>
+            <button class="btn btn-danger" (click)="cancel()"  style="font-size:smaller;width:35px"><i class="pi pi-minus"></i></button>
+          </td>
+
+      </ng-template>
+
+    </p-table>
+
+  </p-tabPanel>
+
+</p-tabView>

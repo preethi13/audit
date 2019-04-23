@@ -1,0 +1,51 @@
+<p-toast></p-toast>
+<p-table [columns]="cols" [value]="risks" [style]="{'font-size':'12px'}" [paginator]="true" [rows]="10"
+sortMode="multiple" [responsive]="true">
+<ng-template pTemplate="header" let-columns>
+  <tr>
+    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+      {{col.header}}
+      <p-sortIcon [field]="col.field"></p-sortIcon>
+    </th>
+  </tr>
+</ng-template>
+<ng-template pTemplate="body" let-rowData let-columns="columns">
+  <tr>
+    <td *ngFor="let col of columns">
+      {{rowData[col.field]}}
+    </td>
+  </tr>
+</ng-template>
+<ng-template pTemplate="summary" let-rowData>
+    <div style="text-align:left">
+        <button  class="btn btn-info" type="button" pButton (click)="addRisk= true;" label="Add"><i class="pi pi-plus">Add</i></button>
+    </div>
+</ng-template>  
+</p-table>
+<div *ngIf="addRisk" style="font-size:14px">
+    <div class="p-col-12">
+        <div class="p-col-4">
+            <label for="desc"><h3>Description:</h3></label>
+        </div>
+        <div class="p-col-8">
+            <input pInputText id="desc" [(ngModel)]="riskNewSubject" style="width: 100%" />
+        </div>
+    </div>
+    <div class="p-col-12">
+        <h4>Rules for calculation the score</h4>
+    </div>
+    <div class="p-col-12">
+        Score is <input type="number" [(ngModel)]="score1" pInputText style="width:50px">&nbsp;, if Risk amount &le; <input  pInputText type="text" [(ngModel)]="amount1"  />.
+    </div>
+    <div class="p-col-12">
+        Score is <input type="number" [(ngModel)]="score2" pInputText style="width:50px">&nbsp;, if Risk amount &le; <input type="text" pInputText [(ngModel)]="amount1" /> and &ge; <input type="text" pInputText [(ngModel)]="amount2">.
+    </div>
+    <div class="p-col-12">
+        Score is <input type="number" [(ngModel)]="score3" pInputText style="width:50px">&nbsp;, if Risk amount &ge; <input type="text" pInputText [(ngModel)]="amount2" />.
+    </div>
+    <div style="text-align: center;width: 100%;margin-top:1rem">
+        <button class="btn btn-success" (click)="addNewRisk()" >Add Risk</button>&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-danger" (cick)="cancel()">Cancel</button>
+    </div>
+
+</div>

@@ -1,0 +1,15 @@
+h5 { 
+    display: block;
+    font-size: .89em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    line-height: 0;
+    font-weight: bold;
+  }
+ 
+  h2{
+      font-size: 0.60cm;
+      color: blue;
+  }

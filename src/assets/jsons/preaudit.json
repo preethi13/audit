@@ -1,0 +1,123 @@
+[{
+    "department":"Health and family welfare",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"23A",
+    "isSelected":"yes",
+    "category":"GSA"
+    },
+    
+    {
+    "department":"Home department",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"24B",
+    "isSelected":"yes",
+    "category":"GSA"
+    },
+    
+    {
+    "department":"Revenue department",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"25A",
+    "isSelected":"yes",
+    "category":"ULB"
+    },
+    
+    {
+    "department":" Energy department ",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"26A",
+    "isSelected":"no",
+    "category":"GSA"
+    },
+    
+    {
+    "department":"Public work department",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2016",
+    "end":"2017"
+    },
+    "riskScore":"27A",
+    "isSelected":"no",
+    "category":"ULB"
+    },
+    
+    {
+    "department":"Labour  department",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2016",
+    "end":"2017"
+    },
+    "riskScore":"28A",
+    "isSelected":"yes",
+    "category":"ULB"
+    },
+    
+    {
+    "department":"Food and civil services",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2016",
+    "end":"2017"
+    },
+    "riskScore":"29A",
+    "isSelected":"yes",
+    "category":"GSA"
+    },
+    
+    {
+    "department":"Water Resources",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2017",
+    "end":"2018"
+    },
+    "riskScore":"21A",
+    "isSelected":"yes",
+    "category":"GSA"
+    },
+    
+    {
+    "department":"Primary Education",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2017",
+    "end":"2018"
+    },
+    "riskScore":"22B",
+    "isSelected":"no",
+    "category":"GSA"
+    },
+    
+    {
+    "department":"Social welfare",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2017",
+    "end":"2018"
+    },
+    "riskScore":"23A",
+    "isSelected":"yes",
+    "category":"ULB"
+    }]
+    
+    
+    
+    
