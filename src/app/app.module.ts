@@ -1,7 +1,7 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PreAuditComponent } from './pre-audit/pre-audit.component';
@@ -22,7 +22,15 @@ import {DialogModule} from 'primeng/dialog';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
-
+import { AuditExecutionComponent } from './audit-execution/audit-execution.component';
+import {CheckboxModule} from 'primeng/checkbox';
+import {TreeTableModule} from 'primeng/treetable';
+import { LoginComponent } from './login/login.component';
+import { CommonModule } from '@angular/common';
+import { AdddepartmentComponent } from './adddepartment/adddepartment.component';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {AccordionModule} from 'primeng/accordion';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,8 +38,13 @@ import {ToastModule} from 'primeng/toast';
     RiskOntologyComponent,
     AuditComponent,
     MenuComponent,
-    ParaOntologyComponent
-  ],
+    ParaOntologyComponent,
+    AuditExecutionComponent,
+    LoginComponent,
+    AdddepartmentComponent,
+    DashboardComponent
+    
+],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -48,7 +61,12 @@ import {ToastModule} from 'primeng/toast';
     DialogModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    CheckboxModule,
+    TreeTableModule,
+    SplitButtonModule,
+    AccordionModule
+    
   ],
   providers: [AuditHttpService],
   bootstrap: [AppComponent]

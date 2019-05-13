@@ -18,12 +18,19 @@ export class MenuComponent implements OnInit {
       icon: 'fa fa-database',
       items: [
         {
-          label: 'Pre-Audit', icon: 'fa fa-eye', command: (event) => {
+          label: 'Risk-Assessment', icon: 'fa fa-eye', command: (event) => {
             this.label = event.item.label;
             console.log('label', this.label);
-          }, routerLink: ['/menu/preaudit']
+          }, routerLink: ['/menu/riskassessment']
         },
         {
+          label: 'Audit-Planning', icon: 'fa fa-eye', command: (event) => {
+            this.label = event.item.label;
+            console.log('label', this.label);
+          }, routerLink: ['/menu/auditexecution']
+        },
+        
+          {
           label: 'Audit', icon: 'fa fa-plus', command: (event) => {
             this.label = event.item.label;
             console.log('label', this.label);
@@ -51,8 +58,16 @@ export class MenuComponent implements OnInit {
     },
     {
       label: 'Help',
-      icon: 'fa fa-question'
-    },
+      icon: 'fa fa-question',
+      items: [
+        {
+          label: 'Add Department', icon: 'fa fa-eye', command: (event) => {
+            this.label = event.item.label;
+            console.log('label', this.label);
+          }, routerLink: ['/menu/adddepartment']
+        }
+      ]
+      },
     {
       label: 'Logout',
       icon: 'fa fa-sign-out'

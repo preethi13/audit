@@ -1,0 +1,19 @@
+
+<h6>
+  Add a new Department
+</h6>
+
+<input id="input" type="text" size="30" pInputText [(ngModel)]="text11"> 
+<span id="text">{{text}}</span>
+<br>
+<br>
+<h6>
+    Add a new category
+  </h6>
+<input id="input" type="text" size="30" pInputText [(ngModel)]="text"> 
+<span id="text">{{text}}</span>
+<br>
+<br>
+
+<p-splitButton label="Save" icon="pi pi-file" (onClick)="save('info')" [model]="items"></p-splitButton>
+

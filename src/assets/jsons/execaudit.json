@@ -1,0 +1,72 @@
+[{
+    "department":"Health and family welfare",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"23",
+    "isSelected":"yes",
+    "units":"Arogya Kavacha",
+    "risklevel":"high"
+
+    },
+    
+    {
+    "department":"Health and family welfare",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"24",
+    "isSelected":"no",
+    "units":"NRHM",
+    "risklevel":"medium"
+    },
+    
+    {
+    "department":"Urban Development",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"25",
+    "isSelected":"yes",
+    "units":"BBMP",
+    "risklevel":"high"
+    },
+    
+    {
+    "department":"Urban Development  ",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2015",
+    "end":"2016"
+    },
+    "riskScore":"20",
+    "isSelected":"no",
+    "units":"BDA",
+    "risklevel":"low"
+    },
+    
+    {
+    "department":"Urban Development",
+    "temporal":{
+    "unit":"yyyy",
+    "start":"2016",
+    "end":"2017"
+    },
+    "riskScore":"27",
+    "isSelected":"yes",
+    "units":"DMA",
+    "risklevel":"high"
+    
+    
+    
+    }]
+    
+    
+    
+    

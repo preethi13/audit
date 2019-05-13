@@ -5,11 +5,21 @@ import { RiskOntologyComponent } from './risk-ontology/risk-ontology.component';
 import { MenuComponent } from './menu/menu.component';
 import { AuditComponent } from './audit/audit.component';
 import { ParaOntologyComponent } from './para-ontology/para-ontology.component';
+import { AuditExecutionComponent } from './audit-execution/audit-execution.component';
+import { LoginComponent } from './login/login.component';
+import { AdddepartmentComponent } from './adddepartment/adddepartment.component';
+
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'menu', pathMatch: 'full' },
-  { path: 'menu', component: MenuComponent, children: [{ path: 'preaudit', component: PreAuditComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'home', component:DashboardComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'menu', component: MenuComponent, children: [{ path: 'riskassessment', component: PreAuditComponent },
+  {path : 'auditexecution',component:AuditExecutionComponent},
   { path: 'audit', component: AuditComponent },
+  { path: 'adddepartment', component: AdddepartmentComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'riskontology', component: RiskOntologyComponent },
   { path: 'paraontology', component: ParaOntologyComponent }] }
 ];

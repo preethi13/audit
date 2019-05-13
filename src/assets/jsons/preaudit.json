@@ -5,9 +5,12 @@
     "start":"2015",
     "end":"2016"
     },
-    "riskScore":"23A",
+    "riskScore":"23",
     "isSelected":"yes",
-    "category":"GSA"
+    "jurisdiction":"GSA",
+    "risklevel":"high",
+    "auditlevel" : "department "
+
     },
     
     {
@@ -17,9 +20,11 @@
     "start":"2015",
     "end":"2016"
     },
-    "riskScore":"24B",
+    "riskScore":"24",
     "isSelected":"yes",
-    "category":"GSA"
+    "jurisdiction":"GSA",
+    "risklevel":"medium",
+    "auditlevel" : "audit unit "
     },
     
     {
@@ -29,9 +34,11 @@
     "start":"2015",
     "end":"2016"
     },
-    "riskScore":"25A",
+    "riskScore":"25",
     "isSelected":"yes",
-    "category":"ULB"
+    "jurisdiction":"ULB",
+    "risklevel":"high",
+    "auditlevel" : "audit unit"
     },
     
     {
@@ -41,9 +48,11 @@
     "start":"2015",
     "end":"2016"
     },
-    "riskScore":"26A",
+    "riskScore":"26",
     "isSelected":"no",
-    "category":"GSA"
+    "jurisdiction":"GSA",
+    "risklevel":"high",
+    "auditlevel" : "department"
     },
     
     {
@@ -53,9 +62,11 @@
     "start":"2016",
     "end":"2017"
     },
-    "riskScore":"27A",
+    "riskScore":"27",
     "isSelected":"no",
-    "category":"ULB"
+    "jurisdiction":"ULB",
+    "risklevel":"high",
+    "auditlevel" : "department"
     },
     
     {
@@ -65,9 +76,11 @@
     "start":"2016",
     "end":"2017"
     },
-    "riskScore":"28A",
+    "riskScore":"28",
     "isSelected":"yes",
-    "category":"ULB"
+    "jurisdiction":"ULB",
+    "risklevel":"high",
+    "auditlevel" : "apex unit"
     },
     
     {
@@ -77,9 +90,11 @@
     "start":"2016",
     "end":"2017"
     },
-    "riskScore":"29A",
+    "riskScore":"29",
     "isSelected":"yes",
-    "category":"GSA"
+    "jurisdiction":"GSA",
+    "risklevel":"high",
+    "auditlevel" : "departnent"
     },
     
     {
@@ -89,9 +104,11 @@
     "start":"2017",
     "end":"2018"
     },
-    "riskScore":"21A",
+    "riskScore":"21",
     "isSelected":"yes",
-    "category":"GSA"
+    "jurisdiction":"GSA",
+    "risklevel":"high",
+    "auditlevel" : "audit unit"
     },
     
     {
@@ -101,9 +118,11 @@
     "start":"2017",
     "end":"2018"
     },
-    "riskScore":"22B",
+    "riskScore":"22",
     "isSelected":"no",
-    "category":"GSA"
+    "jurisdiction":"GSA",
+    "risklevel":"medium",
+    "auditlevel" : "department"
     },
     
     {
@@ -113,9 +132,11 @@
     "start":"2017",
     "end":"2018"
     },
-    "riskScore":"23A",
+    "riskScore":"23",
     "isSelected":"yes",
-    "category":"ULB"
+    "jurisdiction":"ULB",
+    "risklevel":"high",
+    "auditlevel" : "audit unit"
     }]
     
     
