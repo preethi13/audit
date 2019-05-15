@@ -31,6 +31,8 @@ import { AdddepartmentComponent } from './adddepartment/adddepartment.component'
 import {SplitButtonModule} from 'primeng/splitbutton';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AccordionModule} from 'primeng/accordion';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {ChipsModule} from 'primeng/chips';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +67,9 @@ import {AccordionModule} from 'primeng/accordion';
     CheckboxModule,
     TreeTableModule,
     SplitButtonModule,
-    AccordionModule
+    AccordionModule,
+    AutoCompleteModule,
+    ChipsModule
     
   ],
   providers: [AuditHttpService],

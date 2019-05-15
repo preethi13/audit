@@ -7,45 +7,34 @@ import { AuditHttpService } from '../utility/auditHttpService';
   templateUrl: './adddepartment.component.html',
   styleUrls: ['./adddepartment.component.css']
 })
+
 export class AdddepartmentComponent implements OnInit {
-  
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
-
-
-}
-export class SplitButtonDemo implements OnInit {
-
+  selecthead: SelectItem[];
   items: MenuItem[];
 item: SelectItem[];
+selectlocation: SelectItem[];
+values: string[];
+classification: SelectItem[];
 
-  constructor(private messageService: MessageService) {}
+
+  constructor() {}
 
   ngOnInit() {
-      this.items = [
-          {label: 'Update', icon: 'pi pi-refresh', command: () => {
-              this.update();
-          }},
-          {label: 'Delete', icon: 'pi pi-times', command: () => {
-              this.delete();
-          }},
-          {label: 'Angular.io', icon: 'pi pi-info', url: 'http://angular.io'},
-          {label: 'Setup', icon: 'pi pi-cog', routerLink: ['/setup']}
+
+      this.selecthead = [{ label: 'Head of', value: 'Head of' },
+      { label: 'Sub-Organization of', value: 'Sub-Organization of' },
+      { label: 'Linked to', value: 'Linked to' }
       ];
-  }
+      this.selectlocation = [{label: 'Has site', value: 'Has site' },
+      { label: 'Primarily based at', value: 'Primarily based at' },
+      { label: 'Head Reg at', value: 'Head Reg at' }
+      ];
+      this.classification = [{label: 'Audit unit', value: 'Audit unit' },
+       { label: 'Department', value: 'Department' },
+       { label: 'Head Reg at', value: 'Head Reg at' }
+       ];
+      
+      
+      }
+    }
 
-  save(severity: string) {
-      this.messageService.add({severity:severity, summary:'Success', detail:'Data Saved'});
-  }
-
-  update() {
-      this.messageService.add({severity:'success', summary:'Success', detail:'Data Updated'});
-  }
-
-  delete() {
-      this.messageService.add({severity:'success', summary:'Success', detail:'Data Deleted'});
-  }
-
-}
