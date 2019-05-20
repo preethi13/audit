@@ -13,12 +13,11 @@
                 <h6>location type</h6>    
                 <p-dropdown  id="input2" [options]="selectlocation"  placeholder="registration"
                 [showClear]="true"></p-dropdown>  <br><br><br>    
-                <h5 align="center" style="font-weight: 600"> Headed by</h5>
+                <h5 align="center" style="font-weight: 500"> Headed by</h5>
   <br><br>
         
-    <h5 align="center" style="font-weight: 600"> Audit Unit Level</h5>  <br><br>          
-    <h5 align="center" style="font-weight: 600"> Add Members</h5><br>
-    <button pButton type="button" label="Save" ></button> 
+    <h5 align="center" style="font-weight: 500;"> Audit Unit Level</h5>  <br><br>          
+
   </div>             
 
 <div class="ui-g-3" >
@@ -33,10 +32,34 @@
      
     <p-dropdown  id="input2" [options]="classification"  placeholder="classification"
                 [showClear]="true"></p-dropdown>  <br><br><br>
-    <p-chips [(ngModel)]="values"></p-chips><br><br>
 
-   
-    <button pButton type="button" label="Clear All" ></button>
   </div>
   
+</div>
+<div>
+    <p-fieldset legend="Member Profile" [toggleable]="true">
+        <p-table [columns]="memCols" [value]="memData">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                  {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+        </ng-template>
+      </p-table>
+    </p-fieldset>
+<div style="color:green;text-align: right;"><i class="fa fa-plus-circle" style="font-size: xx-large" aria-hidden="true"></i></div>
+
+</div>
+
+<div style="text-align: center;margin-top: 2rem">
+  <button  class="btn btn-success" style="margin-right: 1rem">Create</button>
+  <button class="btn btn-danger" style="margin-right: 1rem">Cancel</button>
 </div>

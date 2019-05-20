@@ -1,33 +1,45 @@
+<div class="p-col-8 p-md-8 p-lg-8;" style="font-size:large;display:flex;justify-content: space-evenly;font-weight:bold">
+  <p-radioButton name="groupname" value="history" [(ngModel)]="selectedValue" label="View History"></p-radioButton>
+  <p-radioButton name="groupname" value="manage" [(ngModel)]="selectedValue" label="Manage Ongoing"></p-radioButton>
+</div>
+<div *ngIf="selectedValue==='history'||selectedValue==='manage'"
+  style="border:outset;display:flex;width:80%;text-align: center;justify-content: space-evenly;padding:1rem;margin: 2rem">
+  <div>
+    <h6 class="center" style="font-weight:bold">Select a department</h6>
+    <p-dropdown [options]="cities" placeholder="Select a department" [showClear]="true"></p-dropdown>
 
-<p-tabView>
-    
-    
-  <p-tabPanel header="Audit Head">
-      <div class="p-col-12 p-md-12 p-lg-12">
-          <h6 class="center">Select a department</h6>
-          <p-dropdown [options]="cities"  placeholder="Select a department"  [showClear]="true"></p-dropdown>
-          <h6 class="first">Select a unit</h6>
-          <p-dropdown [options]="citie"  placeholder="Select a unit"  [showClear]="true"></p-dropdown>
-          
-        </div>  
+  </div>
+  <div>
+    <h6 class="first" style="font-weight:bold">Select a unit</h6>
+    <p-dropdown [options]="citie" placeholder="Select a unit" [showClear]="true"></p-dropdown>
 
+  </div>
+  <div>
+    <h6 class="first" style="font-weight:bold">Select Year(Start)</h6>
+    <p-dropdown id="input1" [options]="yearOptions" [(ngModel)]="start" placeholder="Start(yyyy)" [showClear]="true">
+    </p-dropdown>
+  </div>
+  <div>
+    <button class="btn btn-info" style="margin-bottom: -4rem" (click)="show=true;">Fetch Details</button>
 
-    <h2 align="center" style="font-weight: 600">Audit</h2>
-    <h5 align="center">Department name : Public Health </h5>
-    <h5 align="center">Year : 2018-19</h5>
-    <h2 align="center" style="font-weight:600"> Pre Audit</h2>
-    <h5 align="center">Category : General Sector Audit</h5>
-    <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true" [rows]="10"
-    sortMode="multiple" [responsive]="true">
-    <ng-template pTemplate="header" let-columns>
-      <tr>
-        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-          {{col.header}}
-          <p-sortIcon [field]="col.field"></p-sortIcon>
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="caption" style="font-size: 16px">
+  </div>
+
+</div>
+<p-tabView *ngIf="show && selectedValue==='history'">
+  <p-tabPanel header="Pre-audit Profile">
+    <h2 style="text-align:center">Public Health and Family Welfare 2016-2017</h2>
+    <h4 style="font-size:16px;text-align:center">Jurisdition - LB</h4>
+    <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true"
+      [rows]="10" sortMode="multiple" [responsive]="true">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{col.header}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="caption" style="font-size: 16px">
         <!-- <tr>
             <td colspan="2">Aggregated Risk Score</td>
             <td>18B</td>
@@ -35,48 +47,187 @@
         </tr> -->
         Aggregated Risk Score:&nbsp;18B
       </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr>
-        <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
-        </td>
-      </tr>
-    </ng-template>
-
-  </p-table>
-</p-tabPanel>
-
-
-<p-tabPanel header="Post-Audit">
-    <h3>Execution</h3>
-
-    <p-table [value]="preAuditData">
-      <ng-template pTemplate="header">
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
-          <th>Category</th>
-          <th>Observation</th>
-          <th>Specific Para</th>
-          <th>Response</th>
-          <th>Status</th>
-          <th>Para Raised By</th>
-          <th>IR Dispatch Date</th>
-          <th>Response Date</th>
-          <th>Stage</th>
-          <th>Supporting Resource</th>
-          
-          <th style="width:8em"></th>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
         </tr>
       </ng-template>
 
-      <ng-template pTemplate="body" let-rowData>
+    </p-table>
+  </p-tabPanel>
+  <p-tabPanel header="Audit Planning Profile">
+    <h2 style="text-align:center">Public Health and Family Welfare 2016-2017</h2>
+    <h4 style="font-size:16px;text-align:center">National Family Health Scheme</h4>
+    <h4 style="font-size:16px;text-align:center">Jurisdition - LB</h4>
+    <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true"
+      [rows]="10" sortMode="multiple" [responsive]="true">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{col.header}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="caption" style="font-size: 16px">
+        <!-- <tr>
+              <td colspan="2">Aggregated Risk Score</td>
+              <td>18B</td>
+              <td></td>
+          </tr> -->
+        Aggregated Risk Score:&nbsp;18B
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </p-tabPanel>
+
+</p-tabView>
+<p-tabView *ngIf="show && selectedValue==='manage'">
+  <p-tabPanel header="Pre-audit Profile">
+    <h2 style="text-align:center">Public Health and Family Welfare 2018-2019</h2>
+    <h4 style="font-size:16px;text-align:center">Jurisdition - LB</h4>
+    <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true"
+      [rows]="10" sortMode="multiple" [responsive]="true">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{col.header}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="caption" style="font-size: 16px">
+        Aggregated Risk Score:&nbsp;18B
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </p-tabPanel>
+  <p-tabPanel header="Audit Planning Profile">
+    <h2 style="text-align:center">Public Health and Family Welfare 2018-2019</h2>
+    <h4 style="font-size:16px;text-align:center">National Family Health Scheme</h4>
+    <h4 style="font-size:16px;text-align:center">Jurisdition - LB</h4>
+    <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true"
+      [rows]="10" sortMode="multiple" [responsive]="true">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{col.header}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="caption" style="font-size: 16px">
+        <!-- <tr>
+                <td colspan="2">Aggregated Risk Score</td>
+                <td>18B</td>
+                <td></td>
+            </tr> -->
+        Aggregated Risk Score:&nbsp;18B
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </p-tabPanel>
+
+  <p-tabPanel header="Post-Audit">
+
+    <p-table [value]="preAuditData" dataKey="observation">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3em"></th>
+          <th>Para ID</th>
+          <th>Para</th>
+          <th>Observation</th>
+          <th>Category</th>
+          <th>IR DispatchDate</th>
+          <th>Stage</th>
+          <th>Status</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-expanded="expanded" let-columns="columns">
+        <tr>
+          <td>
+            <a href="#" [pRowToggler]="rowData">
+              <i [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
+            </a>
+          </td>
+          <td>{{rowData.observationID}}</td>
+          <td>{{rowData.observation}}</td>
+          <td>{{rowData.observation}}</td>
+          <td>{{rowData.category}}</td>
+          <td>{{rowData.iRDispatchDate}}</td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.stage">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.stage}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.status">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.status}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-rowData let-rowIndex="rowIndex">
+
+        <tr>
+          <td colspan="8" style="padding: 2rem;background-color: lightgray">
+            <h2 style="text-align: center">{{rowData.observation}}</h2>
+            <p-table [value]="preAuditData">
+              <ng-template pTemplate="header">
+        <tr>
+          <th>Query</th>
+          <th>Raised By</th>
+          <th>QueryDate</th>
+          <th>Response</th>
+          <th>ResponseDate</th>
+          <th>Resource</th>
+          <th style="width:8em"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
         <tr>
           <td pEditableColumn>
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.category">
+                <input pInputText type="text" [(ngModel)]="rowData.query">
               </ng-template>
               <ng-template pTemplate="output">
-                {{rowData.category}}
+                {{rowData.query}}
               </ng-template>
 
             </p-cellEditor>
@@ -84,21 +235,20 @@
           <td pEditableColumn>
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.observation">
+                <input pInputText type="text" [(ngModel)]="rowData.raisedBy">
               </ng-template>
               <ng-template pTemplate="output">
-                {{rowData.observation}}
+                {{rowData.raisedBy}}
               </ng-template>
-
             </p-cellEditor>
           </td>
           <td pEditableColumn>
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.specificParameter">
+                <input pInputText type="text" [(ngModel)]="rowData.queryDate">
               </ng-template>
               <ng-template pTemplate="output">
-                {{rowData.specificParameter}}
+                {{rowData.queryDate}}
               </ng-template>
 
             </p-cellEditor>
@@ -117,80 +267,38 @@
           <td pEditableColumn>
             <p-cellEditor>
               <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.status">
+                <input pInputText type="text" [(ngModel)]="rowData.responseDate">
               </ng-template>
               <ng-template pTemplate="output">
-                {{rowData.status}}
+                {{rowData.responseDate}}
               </ng-template>
 
             </p-cellEditor>
           </td>
-          <td pEditableColumn>
-            <p-cellEditor>
-              <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.nameofcontributer">
-              </ng-template>
-              <ng-template pTemplate="output">
-                {{rowData.nameofcontributer}}
-              </ng-template>
-            </p-cellEditor>
-          </td>
-
-          <td pEditableColumn>
-            <p-cellEditor>
-              <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.dispatchdate">
-              </ng-template>
-              <ng-template pTemplate="output">
-                {{rowData.dispatchdate}}
-              </ng-template>
-
-            </p-cellEditor>
-          </td>
-
-          <td pEditableColumn>
-            <p-cellEditor>
-              <ng-template pTemplate="input">
-                <input pInputText type="text" [(ngModel)]="rowData.responsedate">
-              </ng-template>
-              <ng-template pTemplate="output">
-                {{rowData.responsedate}}
-              </ng-template>
-
-            </p-cellEditor>
-          </td>
-          <td pEditableColumn>
-              <p-cellEditor>
-                <ng-template pTemplate="input">
-                  <input pInputText type="file" [(ngModel)]="rowData.stage">
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{rowData.stage}}
-                </ng-template>
-  
-              </p-cellEditor>
-            </td>
           <td pEditableColumn>
             <p-cellEditor>
               <ng-template pTemplate="input">
                 <input pInputText type="file" [(ngModel)]="rowData.resourceFile">
               </ng-template>
               <ng-template pTemplate="output">
-                {{rowData.resourceFile}}
+                {{rowData.resource}}
               </ng-template>
 
             </p-cellEditor>
           </td>
-          
           <td style="width:10%">
-            <button class="btn btn-success" (click)="edit(rowData)" style="font-size:smaller;width:35px;margin-right:.5rem"><i class="pi pi-check"></i></button>
-            <button class="btn btn-danger" (click)="cancel()"  style="font-size:smaller;width:35px"><i class="pi pi-minus"></i></button>
+            <button class="btn btn-success" (click)="edit(rowData)"
+              style="font-size:smaller;width:35px;margin-right:.5rem"><i class="pi pi-check"></i></button>
+            <button class="btn btn-danger" (click)="cancel()" style="font-size:smaller;width:35px"><i
+                class="pi pi-minus"></i></button>
           </td>
-
+        </tr>
       </ng-template>
-
     </p-table>
-
+    </td>
+    </tr>
+    </ng-template>
+    </p-table>
+    <div style="color:green;text-align: right;"><i class="fa fa-plus-circle" style="font-size: x-large" aria-hidden="true"></i></div>
   </p-tabPanel>
-
 </p-tabView>

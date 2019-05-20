@@ -10,18 +10,24 @@ import { LoginComponent } from './login/login.component';
 import { AdddepartmentComponent } from './adddepartment/adddepartment.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserRolesComponent } from './user-roles/user-roles.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'home', component:DashboardComponent},
+  { path: 'home', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'menu', component: MenuComponent, children: [{ path: 'riskassessment', component: PreAuditComponent },
-  {path : 'auditexecution',component:AuditExecutionComponent},
-  { path: 'audit', component: AuditComponent },
-  { path: 'adddepartment', component: AdddepartmentComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'riskontology', component: RiskOntologyComponent },
-  { path: 'paraontology', component: ParaOntologyComponent }] }
+  {
+    path: 'menu', component: MenuComponent, children: [
+      { path: 'riskassessment', component: PreAuditComponent },
+      { path: 'auditexecution', component: AuditExecutionComponent },
+      { path: 'postaudit', component: AuditComponent },
+      { path: 'adddepartment', component: AdddepartmentComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'riskontology', component: RiskOntologyComponent },
+      { path: 'paraontology', component: ParaOntologyComponent },
+      { path: 'users', component: UserRolesComponent }
+    ]
+  }
 ];
 
 @NgModule({

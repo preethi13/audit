@@ -15,11 +15,25 @@ item: SelectItem[];
 selectlocation: SelectItem[];
 values: string[];
 classification: SelectItem[];
+  memData: any;
+  memCols: { field: string; header: string; }[];
 
 
-  constructor() {}
+  constructor(private auditHttpService: AuditHttpService, ) {}
 
   ngOnInit() {
+    
+    this.auditHttpService.getService('./assets/jsons/memdata.json').subscribe(data =>{
+      this.memData=data;
+    });
+    this.memCols=[{field:'name',header:'Name'},
+    {field:'post',header:'Designation'},
+    {field:'role',header:'Name'},
+    {field:'reportsTo',header:'Reports To'},
+    {field:'period',header:'Period'},
+    {field:'phone',header:'Phone'},
+    {field:'mail',header:'Email'}
+  ]
 
       this.selecthead = [{ label: 'Head of', value: 'Head of' },
       { label: 'Sub-Organization of', value: 'Sub-Organization of' },

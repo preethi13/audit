@@ -1,0 +1,147 @@
+<h3>Roles and Privileges</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Access to Section</th>
+      <th>Insert</th>
+      <th>Update</th>
+      <th>Delete</th>
+      <th>Read</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">Admin</td>
+      <td>Pre-Audit</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+    <tr>
+      <td>Audit Planning</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+    <tr>
+      <td>Post Audit</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+    <tr>
+      <td>Dashboard</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+    <tr>
+      <td rowspan="2">Pre-Audit Officer</td>
+      <td>Pre-Audit</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+
+    </tr>
+    <tr>
+      <td>Dashboard</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+    <tr>
+      <td rowspan="2">Audit Planning Officer</td>
+      <td>Audit-Planning</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+
+    </tr>
+    <tr>
+      <td>Dashboard</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+    <tr>
+      <td rowspan="2">Post-Audit Officer</td>
+      <td>Post-Audit</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+
+    </tr>
+    <tr>
+      <td>Dashboard</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+    <tr>
+      <td>General</td>
+      <td>Dashboard</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td><i class="fa fa-check-circle" style="color:blue" aria-hidden="true"></i></td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="text-align:left">
+    <button  class="btn btn-info" style = "margin: 1rem;font-size: small;padding: 0" type="button" pButton (click)="addRole= true;" label="Add New"></button>
+</div>
+<div  class="p-col-12" *ngIf="addRole">
+  <div class="p-col-12" style="display:flex">
+      <div class="p-col-2">
+          <label for="desc"><h3>Description:</h3></label>
+      </div>
+      <div class="p-col-6">
+          <input pInputText id="desc" [(ngModel)]="desc" style="width: 100%" />
+      </div>
+  </div>
+  <div class="ui-g-12">
+      <h2>Select Sections which can be accessed</h2>
+      <ul style="list-style:none">
+          <li><p-checkbox name="groupname" value="val1" [(ngModel)]="sel1" label="Pre-Audit" binary="true"></p-checkbox></li>
+          <li><p-checkbox name="groupname" value="val2" [(ngModel)]="sel2" label="Audit-Planning" binary="true"></p-checkbox></li>
+          <li><p-checkbox name="groupname" value="val1" [(ngModel)]="sel3" label="Post-Audit" binary="true"></p-checkbox></li>
+          <li><p-checkbox name="groupname" value="val2" [(ngModel)]="sel4" label="Miscellanious (All other)" binary="true"></p-checkbox></li>
+      </ul>
+      
+  </div>
+  <div class="ui-g-12">
+    <div class="ui-g-6" *ngIf="sel1">
+      <h2>Permisssions in Pre-Audit</h2>
+      <p-multiSelect [options]="permissions" [(ngModel)]="selectedper1" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
+    </div>
+    <div class="ui-g-6" *ngIf="sel2">
+        <h2>Permisssions in Audit-Planning</h2>
+        <p-multiSelect [options]="permissions" [(ngModel)]="selectedper2" [panelStyle]="{minWidth:'15em'}"></p-multiSelect>
+      </div>
+      <div class="ui-g-6" *ngIf="sel3">
+          <h2>Permisssions in Post-Audit</h2>
+          <p-multiSelect [options]="permissions" [(ngModel)]="selectedper3" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+        </div> 
+        <div class="ui-g-6" *ngIf="sel4">
+            <h2>Permisssions in other Functions</h2>
+            <p-multiSelect [options]="permissions" [(ngModel)]="selectedper4" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+          </div>
+  </div>
+  <div style = "text-align: center;margin-top: 1rem">
+    <button class="btn btn-success" style="margin-right: 1rem">Add Role</button>
+    <button class="btn btn-danger">Cancel</button>
+  </div>
+
+</div>

@@ -33,6 +33,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ChipsModule} from 'primeng/chips';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { UserRolesComponent } from './user-roles/user-roles.component';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {FieldsetModule} from 'primeng/fieldset';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +48,8 @@ import {ChipsModule} from 'primeng/chips';
     AuditExecutionComponent,
     LoginComponent,
     AdddepartmentComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserRolesComponent
     
 ],
   imports: [
@@ -56,12 +61,15 @@ import {ChipsModule} from 'primeng/chips';
     HttpClientModule,
     TabViewModule,
     TableModule,
+    FieldsetModule,
     PanelMenuModule,
+    MultiSelectModule,
     CardModule,
     DropdownModule,
     InputTextModule,
     DialogModule,
     MessagesModule,
+    RadioButtonModule,
     MessageModule,
     ToastModule,
     CheckboxModule,

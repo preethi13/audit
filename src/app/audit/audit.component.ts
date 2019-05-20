@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuditHttpService } from '../utility/auditHttpService';
 import { SelectItem } from 'primeng/api';
+import { range } from 'rxjs';
 
 @Component({
   selector: 'app-audit',
@@ -11,6 +12,7 @@ export class AuditComponent implements OnInit {
 
   cities: SelectItem[];
   citie: SelectItem[];
+  yearOptions: SelectItem[] = [];
   preAuditData: {
     'category': string;
     'observation': string;
@@ -26,17 +28,25 @@ export class AuditComponent implements OnInit {
 
   riskCols: { field: string; header: string; }[];
   preAuditRiskData: AuditHttpService;
+  rowGroupMetadata: {};
   constructor(private auditHttpService: AuditHttpService) {
 
   }
   ngOnInit() {
-    this.cities = [{ label: 'Health and family welfare', value: 'Health and family welfare' },
-    { label: 'Health and ', value: 'Health and ' }
-  ];
-    this.citie = [{label: 'fef', value: 'fef'},
-    {label: 'He', value: 'H'}
-];
-  this.riskCols = [
+    range(1992, 30).subscribe(data => {
+      const yearArray: string[] = [];
+      yearArray.push(data.toString());
+      yearArray.forEach(element =>{
+        this.yearOptions.push({label:element,value:element});
+      });
+    });
+    this.cities = [{ label: 'Public Health and family welfare', value: 'Health and family welfare' },
+    { label: 'Education', value: 'Education' }
+    ];
+    this.citie = [{ label: 'SA', value: 'fef' },
+    { label: 'LB', value: 'LB' }
+    ];
+    this.riskCols = [
       { field: 'riskSubject', header: 'Risk' },
       { field: 'riskAmount', header: 'Amount' },
       { field: 'riskScore', header: 'Score' },
@@ -45,39 +55,36 @@ export class AuditComponent implements OnInit {
     this.auditHttpService.getService('./assets/jsons/riskontology.json').subscribe(data => {
       this.preAuditRiskData = data;
     });
-    this.preAuditData = [
-      {
-        'category': 'Expenditure',
-        'observation': 'observation1',
-        'specificParameter': 'para 1',
-        'response': 'Response1',
-        'status': 'open',
-        'nameofcontributer': 'name1',
-        'dispatchdate':'27/05/2017',
-        'responsedate' : '30/07/2017',
-        'stage':'IR',
+    this.auditHttpService.getService('./assets/jsons/postaudit.json').subscribe(data => {
+      this.preAuditData = data;
+      this.updateRowGroupMetaData();
+    });
 
-        'resourceFile': 'VLCData.csv'
-      },
-
-      {
-        'category': 'Public Grievance',
-        'observation': 'observation2',
-        'specificParameter': 'para 2',
-        'response': 'Response1',
-        'status': 'on progress',
-        'nameofcontributer': 'name4',
-        'dispatchdate':'20/03/2017',
-        'responsedate' : '5/04/2017',
-        'resourceFile': 'Report1.csv',
-        'stage':'Draft Para'
-      },
-    ];
   }
   updateRow(row) {
   }
   cancelUpdate(row) {
 
+  }
+  updateRowGroupMetaData() {
+    this.rowGroupMetadata = {};
+    if (this.preAuditData) {
+      for (let i = 0; i < this.preAuditData.length; i++) {
+        let rowData = this.preAuditData[i];
+        let brand = rowData.observation;
+        if (i == 0) {
+          this.rowGroupMetadata[brand] = { index: 0, size: 1 };
+        } else {
+          let previousRowData = this.preAuditData[i - 1];
+          let previousRowGroup = previousRowData.observation;
+          if (brand === previousRowGroup){
+            this.rowGroupMetadata[brand].size++;
+          } else {
+            this.rowGroupMetadata[brand] = { index: i, size: 1 };
+          }
+        }
+      }
+    }
   }
 
 }

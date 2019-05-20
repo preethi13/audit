@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.items = [{
       label: 'Audit Components',
-      icon: 'fa fa-database',
+      icon: 'fa fa-sitemap',
       items: [
         {
           label: 'Risk-Assessment', icon: 'fa fa-eye', command: (event) => {
@@ -29,12 +29,12 @@ export class MenuComponent implements OnInit {
             console.log('label', this.label);
           }, routerLink: ['/menu/auditexecution']
         },
-        
-          {
-          label: 'Audit', icon: 'fa fa-plus', command: (event) => {
+
+        {
+          label: 'Post-Audit', icon: 'fa fa-plus', command: (event) => {
             this.label = event.item.label;
             console.log('label', this.label);
-          }, routerLink: ['/menu/audit']
+          }, routerLink: ['/menu/postaudit']
         }
       ]
     },
@@ -65,9 +65,15 @@ export class MenuComponent implements OnInit {
             this.label = event.item.label;
             console.log('label', this.label);
           }, routerLink: ['/menu/adddepartment']
+        },
+        {
+          label: 'Roles & Privileges', icon: 'fa fa-users', command: (event) => {
+            this.label = event.item.label;
+            console.log('label', this.label);
+          }, routerLink: ['/menu/users']
         }
       ]
-      },
+    },
     {
       label: 'Logout',
       icon: 'fa fa-sign-out'
