@@ -1,32 +1,67 @@
+
+<body style="font-size:12px">
 <div class="p-col-8 p-md-8 p-lg-8;" style="font-size:large;display:flex;justify-content: space-evenly;font-weight:bold">
   <p-radioButton name="groupname" value="history" [(ngModel)]="selectedValue" label="View History"></p-radioButton>
   <p-radioButton name="groupname" value="manage" [(ngModel)]="selectedValue" label="Manage Ongoing"></p-radioButton>
 </div>
 <div *ngIf="selectedValue==='history'||selectedValue==='manage'"
-  style="border:outset;display:flex;width:80%;text-align: center;justify-content: space-evenly;padding:1rem;margin: 2rem">
+  style="border:outset;width:95%;text-align: center;padding:1rem;margin: 2rem">
+  <div style="display:flex;width:100%;text-align: center;justify-content: space-evenly;">
   <div>
-    <h6 class="center" style="font-weight:bold">Select a department</h6>
+    <h6 class="first" style="font-weight:bold">Select a department</h6>
     <p-dropdown [options]="cities" placeholder="Select a department" [showClear]="true"></p-dropdown>
 
   </div>
   <div>
-    <h6 class="first" style="font-weight:bold">Select a unit</h6>
+    <h6 class="first">Select a unit</h6>
     <p-dropdown [options]="citie" placeholder="Select a unit" [showClear]="true"></p-dropdown>
 
   </div>
   <div>
-    <h6 class="first" style="font-weight:bold">Select Year(Start)</h6>
+    <h6 class="first">Year of Audit</h6>
     <p-dropdown id="input1" [options]="yearOptions" [(ngModel)]="start" placeholder="Start(yyyy)" [showClear]="true">
     </p-dropdown>
   </div>
   <div>
-    <button class="btn btn-info" style="margin-bottom: -4rem" (click)="show=true;">Fetch Details</button>
+    <h6 class="first">Period of Audit-From</h6>
+    <p-dropdown id="input1" [options]="yearOptions" [(ngModel)]="start" placeholder="Start(yyyy)" [showClear]="true">
+    </p-dropdown>
+  </div>
+  <div>
+    <h6 class="first"> Period of Audit-To</h6>
+    <p-dropdown id="input1" [options]="yearOptions" [(ngModel)]="start" placeholder="Start(yyyy)" [showClear]="true">
+    </p-dropdown>
+  </div>
+  </div>
+  <div>
+    <button class="btn btn-info" style="margin-top: 1rem;font-size:inherit" (click)="show=true;">Fetch Details</button>
 
   </div>
 
 </div>
-<p-tabView *ngIf="show && selectedValue==='history'">
-  <p-tabPanel header="Pre-audit Profile">
+<p-table *ngIf="show && selectedValue==='history'" [value]="postauditList" [columns]="postDeptCols" sortMode="multiple" [responsive]="true" selectionMode="single" [(selection)]="selectedDept1" >
+<ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+            {{col.header}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+              {{col.header === 'Year of Audit' ? rowData.temporal.start : rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+
+</p-table>
+<i *ngIf="show && selectedValue==='history'">select a record frm the list to view its profiles!</i>
+<br/>
+<br/>
+<p-tabView *ngIf="show && selectedValue==='history'&& selectedDept1" [style]="{'margin-top':'3rem'}">
+  <p-tabPanel header="Risk Assessment Profile">
     <h2 style="text-align:center">Public Health and Family Welfare 2016-2017</h2>
     <h4 style="font-size:16px;text-align:center">Jurisdition - LB</h4>
     <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true"
@@ -88,6 +123,35 @@
       </ng-template>
 
     </p-table>
+  </p-tabPanel>
+  <p-tabPanel header="Post Audit Profile">
+   <h2 style="text-align:center">Public Health and Family Welfare 2016-2017</h2>
+    <h4 style="font-size:16px;text-align:center">National Family Health Scheme</h4>
+    <h4 style="font-size:16px;text-align:center">Jurisdition - LB</h4>
+  <p-table [value]="preAuditData" dataKey="observation">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Para ID</th>
+          <th>Para</th>
+          <th>Observation</th>
+          <th>Category</th>
+          <th>IR DispatchDate</th>
+          <th>Stage</th>
+          <th>Status</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-expanded="expanded" let-columns="columns">
+        <tr>
+          <td>{{rowData.observationID}}</td>
+          <td>{{rowData.observation}}</td>
+          <td>{{rowData.observation}}</td>
+          <td>{{rowData.category}}</td>
+          <td>{{rowData.iRDispatchDate}}</td>
+          <td>{{rowData.stage}}</td>
+          <td>{{rowData.status}}</td>
+          </tr>
+      </ng-template>
+      </p-table>
   </p-tabPanel>
 
 </p-tabView>
@@ -302,3 +366,4 @@
     <div style="color:green;text-align: right;"><i class="fa fa-plus-circle" style="font-size: x-large" aria-hidden="true"></i></div>
   </p-tabPanel>
 </p-tabView>
+</body>

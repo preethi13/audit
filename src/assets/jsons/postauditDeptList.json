@@ -1,0 +1,130 @@
+[
+    {
+        "department": "Health and family welfare",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2017",
+            "end": "2016",
+            "period": "2016-2017"
+        },
+        "riskScore": "23",
+        "isSelected": "yes",
+        "jurisdiction": "GSA",
+        "risklevel": "high",
+        "auditlevel": "department ",
+        "auditUnit": "Arogya kavacha",
+        "period": "2016-2017"
+    },
+    {
+        "department": "Health and family welfare",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2015",
+            "end": "2016",
+            "period": "2016-2017"
+        },
+        "riskScore": "23",
+        "isSelected": "yes",
+        "jurisdiction": "GSA",
+        "risklevel": "high",
+        "auditlevel": "department ",
+        "auditUnit": "108 scheme",
+        "period": "2016-2017"
+    },
+    {
+        "department": "Home department",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2015",
+            "end": "2016",
+            "period": "2016-2017"
+        },
+        "riskScore": "24",
+        "isSelected": "yes",
+        "jurisdiction": "GSA",
+        "risklevel": "medium",
+        "auditlevel": "audit unit ",
+        "auditUnit": "sheme1",
+        "period": "2016-2017"
+    },
+    {
+        "department": "Revenue department",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2015",
+            "end": "2016",
+            "period": "2016-2017"
+        },
+        "riskScore": "25",
+        "isSelected": "yes",
+        "jurisdiction": "ULB",
+        "risklevel": "high",
+        "auditlevel": "audit unit",
+        "auditUnit": "scheme 1",
+        "period": "2016-2017"
+    },
+    {
+        "department": " Energy department ",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2015",
+            "end": "2016",
+            "period": "2016-2017"
+        },
+        "riskScore": "26",
+        "isSelected": "no",
+        "jurisdiction": "GSA",
+        "risklevel": "high",
+        "auditlevel": "department",
+        "auditUnit": "scheme 6",
+        "period": "2016-2017"
+    },
+    {
+        "department": "Public work department",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2016",
+            "end": "2017",
+            "period": "2016-2017"
+        },
+        "riskScore": "27",
+        "isSelected": "no",
+        "jurisdiction": "ULB",
+        "risklevel": "high",
+        "auditlevel": "department",
+        "auditUnit": "organisation 1",
+        "period": "2016-2017"
+    },
+    {
+        "department": "Labour  department",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2016",
+            "end": "2017",
+            "period": "2016-2017"
+        },
+        "riskScore": "28",
+        "isSelected": "yes",
+        "jurisdiction": "ULB",
+        "risklevel": "high",
+        "auditlevel": "apex unit",
+        "auditUnit": "Scheme 4",
+        "period": "2016-2017"
+    },
+    {
+        "department": "Food and civil services",
+        "temporal": {
+            "unit": "yyyy",
+            "start": "2016",
+            "end": "2017",
+            "period": "2016-2017"
+        },
+        "riskScore": "29",
+        "isSelected": "yes",
+        "jurisdiction": "GSA",
+        "risklevel": "high",
+        "auditlevel": "departnent",
+        "auditUnit": "organisation 1",
+        "period": "2016-2017"
+    }
+]

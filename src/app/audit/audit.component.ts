@@ -27,8 +27,10 @@ export class AuditComponent implements OnInit {
   }[];
 
   riskCols: { field: string; header: string; }[];
+  postDeptCols: { field: string; header: string; }[];
   preAuditRiskData: AuditHttpService;
   rowGroupMetadata: {};
+  postauditList =[];
   constructor(private auditHttpService: AuditHttpService) {
 
   }
@@ -43,8 +45,8 @@ export class AuditComponent implements OnInit {
     this.cities = [{ label: 'Public Health and family welfare', value: 'Health and family welfare' },
     { label: 'Education', value: 'Education' }
     ];
-    this.citie = [{ label: 'SA', value: 'fef' },
-    { label: 'LB', value: 'LB' }
+    this.citie = [{ label: 'Arogra Kavacha', value: 'fef' },
+    { label: 'Scheme 2', value: 'LB' }
     ];
     this.riskCols = [
       { field: 'riskSubject', header: 'Risk' },
@@ -52,12 +54,22 @@ export class AuditComponent implements OnInit {
       { field: 'riskScore', header: 'Score' },
       { field: 'riskResourceName', header: 'Attached Resource' }
     ];
+    this.postDeptCols = [
+      { field: 'department', header: 'Department' },
+      { field: 'auditUnit', header: 'Audit Unit' },
+      { field: 'jurisdiction', header: 'Jurisdiction' },
+      { field: 'start', header: 'Year of Audit' },
+      { field: 'period', header: 'Peiod of Audit' },
+    ];
     this.auditHttpService.getService('./assets/jsons/riskontology.json').subscribe(data => {
       this.preAuditRiskData = data;
     });
     this.auditHttpService.getService('./assets/jsons/postaudit.json').subscribe(data => {
       this.preAuditData = data;
       this.updateRowGroupMetaData();
+    });
+    this.auditHttpService.getService('./assets/jsons/postauditDeptList.json').subscribe(data => {
+      this.postauditList[0] = data[0];
     });
 
   }
