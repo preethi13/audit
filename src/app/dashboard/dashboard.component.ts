@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let chart = c3.generate({
       bindto: '#chart1',
       size: {
-        height: 300,
+        height: 280,
         width: 500
       },
       padding: {
@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let chart3 = c3.generate({
       bindto: '#chart3',
       size: {
-        height: 300,
+        height: 280,
         width: 500
       },
       padding: {
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     let chart2 = c3.generate({
       bindto: '#chart2',
       size: {
-        height: 295,
+        height: 280,
         width: 500
       },
       padding: {
@@ -88,22 +88,29 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
       data: {
         rows: [
-          ['Health and Welfare','revenue','Education','Women and Child'],
-          [10,3,6,8]
+          ['x','Health and Welfare','revenue','Education','Women and Child'],
+          ['Health and Welfare',28],
+          ['revenue',27],
+          ['Education',25],
+          ['Women and Child',22]
+
         ],
-        type:'pie'
+        type: 'area-spline',
       },
-      axis:{
+      bar: {
+        width: 20
+      },
+      axis: {
         x: {
           type: 'category',
-          categories: ['Health and Welfare','revenue','Education','Women and Child']
+          categories: ['Health and Welfare', 'revenue', 'Education', 'Women and Child']
         }
       }
     });
     let chart4 = c3.generate({
       bindto: '#chart4',
       size: {
-        height: 300,
+        height: 280,
         width: 500
       },
       padding: {

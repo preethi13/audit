@@ -3,3 +3,26 @@
     width: 45%;
     text-align:"center";
 }
+h6{
+    font-weight:bold;
+    text-align: center;
+    background-color: beige;
+}
+.dept-round {
+	z-index: 100;
+	left: 0;
+	width: 100px;
+	height: 100px;
+	margin-left: 0;
+	text-align: center;
+	color: #fff;
+	border: 7px solid #ffc107;
+	border-radius: 100%;
+	background-color: #fed136
+}
+.dept-image{
+    height:88px;
+    width:88px;
+    border-radius: 100%;
+    cursor: pointer;
+}

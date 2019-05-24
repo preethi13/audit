@@ -1,59 +1,86 @@
 <!--
-<div class="ui-g ui-fluid">
-    <div class="ui-g-6" >
-    <h3 align="left" style="font-weight: 600"> Department Details</h3> 
-    <span><strong>Name of Department : </strong> Public Health and Family Welfare</span> <br>
-    <span ><strong>Last Audited date :  </strong>   2016</span> <br>
-    <span ><strong>Latest IR :  </strong> Click <a href="http://www.yahoo.com">here</a> for the latest IR.</span>
-    <div class="adjust" style="text-align:center">
-    <p-accordion [multiple]="true"  >
-        <p-accordionTab header="Section A" >
-            Expenditure Details
-           <p> Ledger not maintained properly</p>
-        </p-accordionTab>
-        <p-accordionTab header="Section B">
-            Infrastructure
-        </p-accordionTab>
-      </p-accordion>  
-    </div>
-  </div>
-    
-    <div class="ui-g-6" >
-        <h3 align="left" style="font-weight: 600"> Status</h3>
-        <span ><strong>Last Reply Received  : </strong>  27/05/2017</span><br>
-        <span ><strong>Number of Paras generated:</strong> 25</span><br>
-        <span ><strong>Audit Status :</strong>open</span><br>
-       </div>
    
-       <div class="ui-g-12" >
-          <h3 align="left" style="font-weight: 600"> Key Resources</h3>
-          <span ><strong>Checklist :  </strong> Click <a href="http://www.yahoo.com">here</a> for the Checklist.</span><br>
-          <span ><strong>DDO wise :  </strong>   NIMANS, Diary Circle </span><br>
-          <span><strong>CAG Report :  </strong> Click <a href="http://www.yahoo.com">here</a> for the Cag Report.</span><br>
-          <span ><strong>Paras under process:</strong> 25 ,12</span><br>
-          
-         </div>
-</div>    
     
 
 
 ###############NEW CHANGESSSSSSSSSSSSSS - GRAPHS AND LOGOS###########-->
-<div style="display:flex">
-  <div>
-    <h6>Overall Units Audited Per Department</h6>
-<div id="chart1" class="p-col-6"></div>
+<div style="display:flex;">
+  <div  class="p-col-6" style="border:outset;margin:1rem;width:47%">
+    <h6> % of Audit Units Covered By Department</h6>
+<div id="chart1"></div>
 </div>
-<div>
-    <h6>Departments With Highest Risk</h6>
-<div id="chart2"class="p-col-6"></div>
-</div>
-</div>
-<div style="display:flex">
-  <div>
-      <h6>Year wise Audited </h6>
-<div id="chart3" class="p-col-6"></div>
-</div>
-<div>
-<div id="chart4"class="p-col-6"></div>
+<div class="p-col-6"  style="border:outset;margin:1rem;width:47%">
+<h6>Average Risk Score by Department (Top 5)</h6>
+<div id="chart2"></div>
 </div>
 </div>
+<div style="display:flex;" >
+  <div class="p-col-6"  style="border:outset;margin:1rem;width:47%">
+<h6>Year wise #Audit Units Covered By Department </h6>
+<div id="chart3" ></div>
+</div>
+<div class="p-col-6"  style="border:outset;margin:1rem;width:47%">
+<h6># Open Post Audit Observations By Department (Top 5)</h6>
+<div id="chart4"></div>
+</div>
+</div>
+
+
+<div style="margin-top:5rem;
+padding-top:1rem">
+  <h3 style="font-weight:bold;padding-bottom:2rem">click on the Department to retrieve latest audit Details</h3>
+<div style="display: flex;justify-content: space-around">
+    <div class="dept-round">
+        <img  class="dept-image" src="assets/images/auditlogo.jpg" (click)="showDialogue=true;" alt="">
+      </div>
+      <div class="dept-round">
+          <img  class="dept-image" src="assets/images/auditlogo.jpg" (click)="showDialogue=true;" alt="">
+        </div>
+        <div class="dept-round">
+            <img  class="dept-image" src="assets/images/auditlogo.jpg" (click)="showDialogue=true;" alt="">
+          </div>
+          <div class="dept-round">
+              <img  class="dept-image" src="assets/images/auditlogo.jpg" (click)="showDialogue=true;" alt="">
+            </div>
+</div>
+</div>
+
+<p-dialog header="Health And Family Welfare - Latest Audit Profile" [(visible)]="showDialogue" [maximizable]="true" [responsive]="true" showEffect="fade" [modal]="true" [style]="{'min-height':'800px'}" [positionTop]="70" >
+    <div class="ui-g ui-fluid" style="font-size: 16px;">
+        <div class="ui-g-6" style="padding-left:2rem" >
+        <h3 align="left" style="font-weight: 600"> Department Details</h3> 
+        <span><strong>Name of Department : </strong> Public Health and Family Welfare</span> <br>
+        <span ><strong>Last Audited date :  </strong>   2016</span> <br>
+        <span ><strong>Latest IR :  </strong> Click <a href="http://www.yahoo.com">here</a> for the latest IR.</span>
+        <div class="adjust" style="text-align:center">
+        <p-accordion [multiple]="true"  >
+            <p-accordionTab header="Section A" >
+                Expenditure Details
+               <p> Ledger not maintained properly</p>
+            </p-accordionTab>
+            <p-accordionTab header="Section B">
+                Infrastructure
+            </p-accordionTab>
+          </p-accordion>  
+        </div>
+      </div>
+        
+        <div class="ui-g-6" style="padding-left:10rem">
+            <h3 align="left" style="font-weight: 600"> Status</h3>
+            <span ><strong>Last Reply Received  : </strong>  27/05/2017</span><br>
+            <span ><strong>Number of Paras generated:</strong> 25</span><br>
+            <span ><strong>Audit Status :</strong>open</span><br>
+           </div>
+       
+           <div class="ui-g-12" style="text-align: center" >
+              <h3 align="left" style="font-weight: 600;text-align: center"> Key Resources</h3>
+              <span ><strong>Checklist :  </strong> Click <a href="http://www.yahoo.com">here</a> for the Checklist.</span><br>
+              <span ><strong>DDO wise :  </strong>   NIMANS, Diary Circle </span><br>
+              <span><strong>CAG Report :  </strong> Click <a href="http://www.yahoo.com">here</a> for the Cag Report.</span><br>
+              <span ><strong>Paras under process:</strong> 25 ,12</span><br>
+              
+             </div>
+    </div> 
+</p-dialog>
+
+
