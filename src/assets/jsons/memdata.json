@@ -1,21 +1,15 @@
 [{
-    "name":"Niveditha",
-    "phone":"6734637222",
-    "mail":"admin@pag.in",
-    "post":"Principal Accountant General",
-    "role":"Principle Accountant General",
-    "reportsTo":"CAG",
-    "period":"2017-Current"
-
+    "unitName":"Bruhat Bengaluru Mahanagara Palike",
+    "unitId":"908ij",
+    "additional":"BBMP",
+    "location":"Bengaluru",
+    "email":"contactusbbmp@gmail.com"
+    
 },
-{
-    "name":"Asha Subranaiam",
-    "phone":"6734657221",
-    "mail":"asha@pacindia.org",
-    "post":"Project Manager",
-    "role":"Project Manager",
-    "reportsTo":"PAG",
-    "period":"2019-Current"
-
+{"unitName":" Bengaluru District Authority",
+    "unitId":"9089klj",
+    "additional":"BDA",
+    "location":"Bengaluru",
+    "email":"contactusbda@gmail.com"
 }
 ]
