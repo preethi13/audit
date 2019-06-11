@@ -2,6 +2,7 @@
     {
         "category":"Expenditure",
         "observation":"Mismatch in Budget vs Expenditure",
+        "paracategory":"Part IIA",
         "observationID": "5708A001",
         "iRDispatchDate":"21/03/2019",
         "query":"query1",
@@ -9,6 +10,7 @@
         "queryDate":"21/03/2019",
         "response":"Response 1",
         "responseDate":"27/03/2019",
+        "responseCategory":"",
         "stage":"IR",
         "resource":"Expenditure.xls",
         "status":"open"
@@ -23,6 +25,8 @@
         "queryDate":"15/04/2019",
         "response":"Response 2",
         "responseDate":"20/04/2019",
+        
+    
         "stage":"IR",
         "resource":"Publicpoll.xls",
         "status":"open"

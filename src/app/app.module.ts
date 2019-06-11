@@ -37,6 +37,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
 import { UserRolesComponent } from './user-roles/user-roles.component';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {FieldsetModule} from 'primeng/fieldset';
+import {KeyFilterModule} from 'primeng/keyfilter';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +79,8 @@ import {FieldsetModule} from 'primeng/fieldset';
     SplitButtonModule,
     AccordionModule,
     AutoCompleteModule,
-    ChipsModule
+    ChipsModule,
+    KeyFilterModule
     
   ],
   providers: [AuditHttpService],

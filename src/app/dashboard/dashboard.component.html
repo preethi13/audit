@@ -4,7 +4,13 @@
 
 
 ###############NEW CHANGESSSSSSSSSSSSSS - GRAPHS AND LOGOS###########-->
+<br>
+<div style="text-align: right">        
+    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+    <input type="text" pInputText size="50" placeholder="Search for department/category" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+</div>
 <div style="display:flex;">
+    
   <div  class="p-col-6" style="border:outset;margin:1rem;width:47%">
     <h6> % of Audit Units Covered By Department</h6>
 <div id="chart1"></div>

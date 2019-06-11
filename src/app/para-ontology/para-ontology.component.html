@@ -11,15 +11,18 @@ sortMode="multiple" [responsive]="true">
 </ng-template>
 <ng-template pTemplate="body" let-rowData let-columns="columns">
   <tr>
-    <td *ngFor="let col of columns">
+    <td *ngFor="let col of columns" pEditableColumn>
+     
       {{rowData[col.field]}}
     </td>
   </tr>
+
 </ng-template>
-<ng-template pTemplate="summary" let-rowData>
+<ng-template pTemplate="summary" let-rowData >
     <div style="text-align:left">
-        <button  class="btn btn-info" type="button" pButton (click)="addRisk= true;" label="Add"><i class="pi pi-plus">Add</i></button>
-    </div>
+        <button class="btn btn-info" icon="pi pi-plus" type="button"  (click)="addRisk= true;" label="Add"> <i class="pi pi-plus"></i>Add</button>
+      
+      </div>
 </ng-template>  
 </p-table>
 <div *ngIf="addRisk" style="font-size:14px">

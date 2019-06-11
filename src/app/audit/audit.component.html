@@ -3,6 +3,7 @@
 <div class="p-col-8 p-md-8 p-lg-8;" style="font-size:large;display:flex;justify-content: space-evenly;font-weight:bold">
   <p-radioButton name="groupname" value="history" [(ngModel)]="selectedValue" label="View History"></p-radioButton>
   <p-radioButton name="groupname" value="manage" [(ngModel)]="selectedValue" label="Manage Ongoing"></p-radioButton>
+  
 </div>
 <div *ngIf="selectedValue==='history'||selectedValue==='manage'"
   style="border:outset;width:95%;text-align: center;padding:1rem;margin: 2rem">
@@ -71,6 +72,7 @@
           <th *ngFor="let col of columns" [pSortableColumn]="col.field">
             {{col.header}}
             <p-sortIcon [field]="col.field"></p-sortIcon>
+                 
           </th>
         </tr>
       </ng-template>
@@ -86,7 +88,10 @@
         <tr>
           <td *ngFor="let col of columns">
             {{rowData[col.field]}}
+            <i *ngIf="col.header === 'Attached Resource'" class="pi pi-download"></i>
+            
           </td>
+          
         </tr>
       </ng-template>
 
@@ -118,6 +123,7 @@
         <tr>
           <td *ngFor="let col of columns">
             {{rowData[col.field]}}
+            <i *ngIf="col.header === 'Attached Resource'" class="pi pi-download"></i>
           </td>
         </tr>
       </ng-template>
@@ -155,12 +161,14 @@
   </p-tabPanel>
 
 </p-tabView>
+
 <p-tabView *ngIf="show && selectedValue==='manage'">
   <p-tabPanel header="Pre-audit Profile">
     <h2 style="text-align:center">Public Health and Family Welfare 2018-2019</h2>
     <h4 style="font-size:16px;text-align:center">Jurisdition - LB</h4>
-    <p-table [columns]="riskCols" [value]="preAuditRiskData" [style]="{'font-size':'12px'}" [paginator]="true"
-      [rows]="10" sortMode="multiple" [responsive]="true">
+    
+    <p-table #dt [columns]="riskCols" [value]="preAuditRiskData"  selectionMode="multiple" [style]="{'font-size':'12px'}" [paginator]="true"
+      [rows]="10" sortMode="multiple" [responsive]="true" [(selection)]="selectedDept1">
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th *ngFor="let col of columns" [pSortableColumn]="col.field">
@@ -173,10 +181,12 @@
         Aggregated Risk Score:&nbsp;18B
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
+        <tr >
           <td *ngFor="let col of columns">
             {{rowData[col.field]}}
+            
           </td>
+        
         </tr>
       </ng-template>
 
@@ -216,18 +226,34 @@
   </p-tabPanel>
 
   <p-tabPanel header="Post-Audit">
+      <div style="text-align: right">        
+          <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+          <input type="text" pInputText size="50" pKeyFilter="alpha" placeholder="Filter by category/observation">
+          <!--
+          <input type="text" pInputText size="50"  placeholder="Search by category/observation" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          <br> <br>-->
+          
+          
+         
 
+  
+  <button type="button" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Download Results"></button>
+        </div>
     <p-table [value]="preAuditData" dataKey="observation">
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 3em"></th>
           <th>Para ID</th>
           <th>Para</th>
+          
           <th>Observation</th>
           <th>Category</th>
           <th>IR DispatchDate</th>
           <th>Stage</th>
           <th>Status</th>
+          <th>Para categorization</th>
+          <th>Monetary Amount</th>
+          <th>Recovery Amount</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-expanded="expanded" let-columns="columns">
@@ -242,6 +268,8 @@
           <td>{{rowData.observation}}</td>
           <td>{{rowData.category}}</td>
           <td>{{rowData.iRDispatchDate}}</td>
+        
+       
           <td pEditableColumn>
             <p-cellEditor>
               <ng-template pTemplate="input">
@@ -264,12 +292,45 @@
 
             </p-cellEditor>
           </td>
+          <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                    <p-dropdown [options]="paracategory" [(ngModel)]="rowData.paracategory"required></p-dropdown>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{rowData.paracategory}}
+                </ng-template>
+  
+              </p-cellEditor>
+            </td> 
+            <td pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="rowData.monetaryamount">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{rowData.monetaryamount}}
+                  </ng-template>
+    
+                </p-cellEditor>
+              </td>
+              <td pEditableColumn>
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="rowData.recoveryamount">
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{rowData.recoveryamount}}
+                    </ng-template>
+      
+                  </p-cellEditor>
+                </td>
         </tr>
       </ng-template>
       <ng-template pTemplate="rowexpansion" let-rowData let-rowIndex="rowIndex">
 
         <tr>
-          <td colspan="8" style="padding: 2rem;background-color: lightgray">
+          <td colspan="11" style="padding: 2rem;background-color: lightgray">
             <h2 style="text-align: center">{{rowData.observation}}</h2>
             <p-table [value]="preAuditData">
               <ng-template pTemplate="header">
@@ -279,6 +340,7 @@
           <th>QueryDate</th>
           <th>Response</th>
           <th>ResponseDate</th>
+          <th>Response Category</th>
           <th>Resource</th>
           <th style="width:8em"></th>
         </tr>
@@ -340,6 +402,17 @@
             </p-cellEditor>
           </td>
           <td pEditableColumn>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                    <p-dropdown [options]="responsereason" [(ngModel)]="rowData.brand" [style]="{'width': 'inherit'}"></p-dropdown>
+                </ng-template>
+                <ng-template pTemplate="output">
+                  {{rowData.brand}}
+                </ng-template>
+  
+              </p-cellEditor>
+            </td>
+          <td pEditableColumn>
             <p-cellEditor>
               <ng-template pTemplate="input">
                 <input pInputText type="file" [(ngModel)]="rowData.resourceFile">
@@ -364,6 +437,19 @@
     </ng-template>
     </p-table>
     <div style="color:green;text-align: right;"><i class="fa fa-plus-circle" style="font-size: x-large" aria-hidden="true"></i></div>
+    <div class="ui-g ui-fluid">
+    <div class="ui-g-3">
+    <h6> Type of file</h6>
+    <p-dropdown [options]="filetypes" placeholder="File type"[showClear]=true></p-dropdown>
+    <br>
+   <br>
+    <button>Choose File</button></div>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="text" > <br><br><br>
+    <p-button label="Upload Files"></p-button>
+    
+    
+  </div>
+
   </p-tabPanel>
 </p-tabView>
 </body>

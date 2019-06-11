@@ -3,13 +3,15 @@
     "unitId":"908ij",
     "additional":"BBMP",
     "location":"Bengaluru",
-    "email":"contactusbbmp@gmail.com"
+    "email":"contactusbbmp@gmail.com",
+    "linked":" BDA"
     
 },
 {"unitName":" Bengaluru District Authority",
     "unitId":"9089klj",
     "additional":"BDA",
     "location":"Bengaluru",
-    "email":"contactusbda@gmail.com"
+    "email":"contactusbda@gmail.com",
+    "linked":"BBMP"
 }
 ]

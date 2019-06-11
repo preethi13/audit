@@ -17,3 +17,8 @@ h5 {
       font-weight:bold;
       font-size: 14px;
   }
+  :host::ng-deep .ui-dropdown-legend{
+    width: auto;
+    height: 10%;
+    font-size: 18px;
+}

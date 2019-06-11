@@ -13,6 +13,9 @@ export class AuditComponent implements OnInit {
   cities: SelectItem[];
   citie: SelectItem[];
   yearOptions: SelectItem[] = [];
+  display: boolean;
+  filetypes: SelectItem[];
+  paracategory:SelectItem[];
   preAuditData: {
     'category': string;
     'observation': string;
@@ -31,6 +34,7 @@ export class AuditComponent implements OnInit {
   preAuditRiskData: AuditHttpService;
   rowGroupMetadata: {};
   postauditList =[];
+  responsereason :SelectItem[];
   constructor(private auditHttpService: AuditHttpService) {
 
   }
@@ -42,11 +46,23 @@ export class AuditComponent implements OnInit {
         this.yearOptions.push({label:element,value:element});
       });
     });
+    
     this.cities = [{ label: 'Public Health and family welfare', value: 'Health and family welfare' },
     { label: 'Education', value: 'Education' }
     ];
+    this.paracategory = [{ label: ' Part II A', value: 'Part II A' },
+    { label: 'Part II B', value: 'Part II B' }];
     this.citie = [{ label: 'Arogra Kavacha', value: 'fef' },
     { label: 'Scheme 2', value: 'LB' }
+    ];
+    this.filetypes = [{label: 'Special points', value : 'Special points'},
+    {label: 'Checklist' , value : 'Checklist'},
+    {label : 'IR' , value : 'IR'},
+    {label : 'Line Register' , value : 'Line Register'}
+    ];
+    this.responsereason =[
+      {label: 'generalresponse',value: 'generalresponse'},
+    {label: 'adhoc response', value: 'Adhoc response'}
     ];
     this.riskCols = [
       { field: 'riskSubject', header: 'Risk' },
@@ -77,6 +93,10 @@ export class AuditComponent implements OnInit {
   }
   cancelUpdate(row) {
 
+  }
+  showDialog(){
+    console.log('in open info');
+    this.display = true;
   }
   updateRowGroupMetaData() {
     this.rowGroupMetadata = {};
