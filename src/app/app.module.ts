@@ -38,6 +38,7 @@ import { UserRolesComponent } from './user-roles/user-roles.component';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {FieldsetModule} from 'primeng/fieldset';
 import {KeyFilterModule} from 'primeng/keyfilter';
+import { GeographicComponent } from './geographic/geographic.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {KeyFilterModule} from 'primeng/keyfilter';
     LoginComponent,
     AdddepartmentComponent,
     DashboardComponent,
-    UserRolesComponent
+    UserRolesComponent,
+    GeographicComponent
     
 ],
   imports: [

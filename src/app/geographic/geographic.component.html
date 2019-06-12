@@ -1,0 +1,14 @@
+<div class="ui-g ui-fluid">
+
+<p-fieldset legend="Add the Geographic Divisions">
+  <h6>Group Division</h6>
+  <input id="input" type="text" size="30" pInputText [(ngModel)]="text"> 
+  <h6>Enter a division</h6>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="text"> 
+    <h6>Add the districts</h6>
+   <p-multiSelect [options]="districts" [(ngModel)]="selecteddistricts" [panelStyle]= "{minWidth:'12em'}"> </p-multiSelect>
+   <p>Selected Districts: {{selecteddistricts}}</p>
+   <button pButton type="button" label="Create" ></button>
+ </p-fieldset>
+
+</div>

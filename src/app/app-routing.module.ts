@@ -8,7 +8,7 @@ import { ParaOntologyComponent } from './para-ontology/para-ontology.component';
 import { AuditExecutionComponent } from './audit-execution/audit-execution.component';
 import { LoginComponent } from './login/login.component';
 import { AdddepartmentComponent } from './adddepartment/adddepartment.component';
-
+import {GeographicComponent} from './geographic/geographic.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserRolesComponent } from './user-roles/user-roles.component';
 
@@ -21,6 +21,7 @@ const routes: Routes = [
       { path: 'auditexecution', component: AuditExecutionComponent },
       { path: 'postaudit', component: AuditComponent },
       { path: 'adddepartment', component: AdddepartmentComponent },
+      { path: 'geographic', component: GeographicComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'riskontology', component: RiskOntologyComponent },
       { path: 'paraontology', component: ParaOntologyComponent },

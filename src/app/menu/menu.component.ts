@@ -67,6 +67,12 @@ export class MenuComponent implements OnInit {
           }, routerLink: ['/menu/adddepartment']
         },
         {
+          label: 'Geographic Division', icon: 'fa fa-eye', command: (event) => {
+            this.label = event.item.label;
+            console.log('label', this.label);
+          }, routerLink: ['/menu/geographic']
+        },
+        {
           label: 'Roles & Privileges', icon: 'fa fa-users', command: (event) => {
             this.label = event.item.label;
             console.log('label', this.label);
