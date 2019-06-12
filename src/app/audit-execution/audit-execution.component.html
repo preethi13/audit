@@ -215,7 +215,8 @@
                     {{rowData[col.field]}}
                 </td>
                 <td style = "text-align: center">
-                  <button class="btn btn-info" type="button" pButton  (click)="showDialogToAdd(rowData)" label="Add"><i class= "pi pi-pencil"></i></button>
+                  <button class="btn btn-info" icon = "pi pi-pencil" type="button" (click)="showDialogToAdd(rowData)" label="Add"><i class="pi pi-pencil"></i></button>
+                  
                 </td>
             </tr>
         </ng-template>
@@ -262,9 +263,10 @@
         </div>
         <p-footer>
             <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button class= "btn btn-success" type="button" pButton  (click)="save()" label="Save"><i class="pi pi-check"></i></button>
-                <button  class= "btn btn-danger"type="button" pButton (click)="delete()" label="Delete"><i class="pi pi-minus"></i></button>
-                
+                <button class= "btn btn-success"  (click)="save()" ><i class="pi pi-check"></i></button>
+               
+                <button  class= "btn btn-danger"  (click)="delete()" ><i class="pi pi-minus"></i></button>
+              
             </div>
         </p-footer>
     </p-dialog>

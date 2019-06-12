@@ -51,6 +51,7 @@ export class AuditComponent implements OnInit {
       });
     });
     
+    
     this.cities = [{ label: 'Public Health and family welfare', value: 'Health and family welfare' },
     { label: 'Education', value: 'Education' }
     ];

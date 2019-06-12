@@ -295,7 +295,7 @@
           <td pEditableColumn>
               <p-cellEditor>
                 <ng-template pTemplate="input">
-                    <p-dropdown [options]="paracategory" [(ngModel)]="rowData.paracategory"required></p-dropdown>
+                    <p-dropdown [options]="paracategory" [(ngModel)]="rowData.paracategory"required [style]="{'width':'10px','panelStyle':'10px'}" ></p-dropdown>
                 </ng-template>
                 <ng-template pTemplate="output">
                   {{rowData.paracategory}}
