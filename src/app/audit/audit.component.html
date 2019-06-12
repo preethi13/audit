@@ -404,10 +404,10 @@
           <td pEditableColumn>
               <p-cellEditor>
                 <ng-template pTemplate="input">
-                    <p-dropdown [options]="responsereason" [(ngModel)]="rowData.brand" [style]="{'width': 'inherit'}"></p-dropdown>
+                    <p-dropdown [options]="responsereason" [(ngModel)]="rowData.responseCategory" [style]="{'width': 'inherit'}"></p-dropdown>
                 </ng-template>
                 <ng-template pTemplate="output">
-                  {{rowData.brand}}
+                  {{rowData.responseCategory}}
                 </ng-template>
   
               </p-cellEditor>
@@ -438,14 +438,13 @@
     </p-table>
     <div style="color:green;text-align: right;"><i class="fa fa-plus-circle" style="font-size: x-large" aria-hidden="true"></i></div>
     <div class="ui-g ui-fluid">
-    <div class="ui-g-3">
-    <h6> Type of file</h6>
-    <p-dropdown [options]="filetypes" placeholder="File type"[showClear]=true></p-dropdown>
-    <br>
-   <br>
-    <button>Choose File</button></div>
-    <input id="input" type="text" size="30" pInputText [(ngModel)]="text" > <br><br><br>
-    <p-button label="Upload Files"></p-button>
+    <div class="ui-g-8" style="display: flex">
+    <h6 style="margin-top: .5rem"> Type of file:</h6>&nbsp;&nbsp;
+    <p-dropdown [options]="filetypes" placeholder="File type"[showClear]=true ></p-dropdown>
+
+    <input type="file" style="margin-left: 3rem" multiple></div>
+    <input id="input" type="text" style="border:none" pInputText [(ngModel)]="text" > 
+    <button   class="btn btn-success" >Upload Files</button>
     
     
   </div>

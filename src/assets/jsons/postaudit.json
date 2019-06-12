@@ -2,7 +2,6 @@
     {
         "category":"Expenditure",
         "observation":"Mismatch in Budget vs Expenditure",
-        "paracategory":"Part IIA",
         "observationID": "5708A001",
         "iRDispatchDate":"21/03/2019",
         "query":"query1",
@@ -10,10 +9,14 @@
         "queryDate":"21/03/2019",
         "response":"Response 1",
         "responseDate":"27/03/2019",
-        "responseCategory":"",
         "stage":"IR",
         "resource":"Expenditure.xls",
-        "status":"open"
+        "status":"open",
+        "paracategory":"Part II B",
+        "monetaryamount":"326719",
+        "recoveryamount":"134267",
+        "responseCategory":"General"
+
     },
     {
         "category":"Public grievance",
@@ -26,10 +29,16 @@
         "response":"Response 2",
         "responseDate":"20/04/2019",
         
+        
     
         "stage":"IR",
         "resource":"Publicpoll.xls",
-        "status":"open"
+        "status":"open",
+        "paracategory": "Part II A",
+        "monetaryamount": "5263915",
+        "recoveryamount":"5188993",
+        "responseCategory":"Adhoc"
+
     },
     {
         "category":"Fraud",
@@ -43,7 +52,12 @@
         "responseDate":"20/04/2019",
         "stage":"IR",
         "resource":"Expenditure.xls",
-        "status":"open"
+        "status":"open",
+        "paracategory":"Part II A",
+        "monetaryamount":"1343729",
+        "recoveryamount":"1254681",
+        "responseCategory":"General"
+
     },
     {
         "category":"Quality of records maintained",
@@ -57,7 +71,11 @@
         "responseDate":"20/04/2019",
         "stage":"IR",
         "resource":"Expenditure.xls",
-        "status":"open"
+        "status":"open",
+        "paracategory":"Part II A",
+        "monetaryamount":"54892519",
+        "recoveryamount":"4639163",
+        "responseCategory":"General"
     }
     
 

@@ -27,6 +27,10 @@ export class AuditComponent implements OnInit {
     'responsedate': string;
     'resourceFile': string;
     'stage': string;
+    'paracategory':string;
+    'monetaryamount': string;
+    'recoveryamount': string;
+
   }[];
 
   riskCols: { field: string; header: string; }[];

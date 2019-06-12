@@ -29,6 +29,7 @@ export class PreAuditComponent implements OnInit {
   yearOptions: SelectItem[] = [];
   categoryOptions: SelectItem[];
   departmentOptions: SelectItem[];
+  departmentOptionsdummy: { label: string; value: string; }[];
 
   constructor(private auditHttpService: AuditHttpService, private messageService: MessageService) { }
 
@@ -56,6 +57,12 @@ export class PreAuditComponent implements OnInit {
       { field: 'riskResourceName', header: 'Attached Resource' }
     ];
     this.departmentOptions = [{ label: 'Health and family welfare', value: 'Health and family welfare' },
+    { label: 'Home department', value: 'Home department' },
+    { label: 'Revenue department', value: 'Revenue department' },
+    { label: 'Energy departments', value: 'Energy departments' },
+    { label: 'Public work department', value: 'Public work department' }];
+    this.departmentOptionsdummy = [{ label: 'All', value: 'All' },
+      { label: 'Health and family welfare', value: 'Health and family welfare' },
     { label: 'Home department', value: 'Home department' },
     { label: 'Revenue department', value: 'Revenue department' },
     { label: 'Energy departments', value: 'Energy departments' },

@@ -26,6 +26,8 @@ export class AuditExecutionComponent implements OnInit {
   riskedit = {};
   selectedCar:any
   preAuditRiskDummyData: any;
+  dummyDepts: { label: string; value: string; }[];
+  dummyunits: { label: string; value: string; }[];
   constructor(private auditHttpService: AuditHttpService, private messageService:MessageService) { }
 
   ngOnInit() {
@@ -55,6 +57,12 @@ export class AuditExecutionComponent implements OnInit {
     this.risks = [{ label: 'Ministry of Urban Development', value: 'Ministry of Urban Development' },
     { label: ' Home department', value: 'Home department' },
     { label: 'Revenue department', value: 'Revenue department' }];
+    this.dummyDepts = [{label:'All', value:'All'},
+      { label: 'Ministry of Urban Development', value: 'Ministry of Urban Development' },
+    { label: ' Home department', value: 'Home department' },
+    { label: 'Revenue department', value: 'Revenue department' }];
+    this.dummyunits = [{label:'All', value:'All'},{ label: 'BBMP', value: 'BBMP' },
+    { label: ' DMA', value: 'DMA' }];
     this.auditHttpService.getService('./assets/jsons/execaudit.json').subscribe(data => {
       this.preAuditData = data;
     });

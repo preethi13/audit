@@ -13,7 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserRolesComponent } from './user-roles/user-roles.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'menu', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'menu', component: MenuComponent, children: [

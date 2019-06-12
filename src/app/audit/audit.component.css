@@ -22,3 +22,7 @@ h5 {
     height: 10%;
     font-size: 18px;
 }
+:host::ng-deep .ui-fluid .ui-dropdown{
+    width:100%;
+    min-width: none;
+}

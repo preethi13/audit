@@ -1,25 +1,21 @@
 <p-toast></p-toast>
 
 <body style="font-size:12px">
-    <div class="p-col-8 p-md-8 p-lg-8;" style="font-size:large;display:flex;justify-content: space-evenly;font-weight:bold">
-      <p-radioButton  name="groupname" value="history" [(ngModel)]="selectedValue" label="View History"></p-radioButton>
-      
-    </div>
-    <div *ngIf="selectedValue==='history'||selectedValue==='manage'"
-      style="border:outset;width:95%;text-align: center;padding:1rem;margin: 2rem">
+    
+    <div style="border:outset;width:95%;text-align: center;padding:1rem;margin: 2rem">
       <div style="display:flex;width:100%;text-align: center;justify-content: space-evenly;">
       <div>
         <h6 class="first" style="font-weight:bold">Select a department</h6>
-        <p-dropdown [options]="cities" placeholder="Select a department" [showClear]="true"></p-dropdown>
+        <p-dropdown [options]="dummyDepts" placeholder="Select a department" [showClear]="true"></p-dropdown>
     
       </div>
       <div>
-        <h6 class="first">Select a unit</h6>
-        <p-dropdown [options]="citie" placeholder="Select a unit" [showClear]="true"></p-dropdown>
+        <h6 class="first" style="font-weight:bold">Select a unit</h6>
+        <p-dropdown [options]="dummyunits" placeholder="Select a unit" [showClear]="true"></p-dropdown>
     
       </div>
       <div>
-        <h6 class="first">Year of Audit</h6>
+        <h6 class="first" style="font-weight:bold">Year of Audit</h6>
         <p-dropdown id="input1" [options]="yearOptions" [(ngModel)]="start" placeholder="Start(yyyy)" [showClear]="true">
         </p-dropdown>
       </div>
@@ -31,7 +27,7 @@
       </div>
     
     </div>
-<p-tabView>
+<p-tabView *ngIf="show">
 
   <p-tabPanel header="View All">
     <div class="p-col-12 p-md-12 p-lg-12">

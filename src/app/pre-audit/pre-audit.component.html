@@ -1,33 +1,28 @@
 <p-toast></p-toast>
 <body style="font-size:12px">
-    <div class="p-col-8 p-md-8 p-lg-8;" style="font-size:large;display:flex;justify-content: space-evenly;font-weight:bold">
-      <p-radioButton  name="groupname" value="history" [(ngModel)]="selectedValue" label="View History"></p-radioButton>
-      
-    </div>
-    <div *ngIf="selectedValue==='history'||selectedValue==='manage'"
-      style="border:outset;width:95%;text-align: center;padding:1rem;margin: 2rem">
+    <div style="border:outset;width:95%;text-align: center;padding:1rem;margin: 1rem 2rem 1rem 2rem;">
       <div style="display:flex;width:100%;text-align: center;justify-content: space-evenly;">
-      <div>
-        <h6 class="first" style="font-weight:bold">Select a department</h6>
-        <p-dropdown [options]="cities" placeholder="Select a department" [showClear]="true"></p-dropdown>
+      <div style="display:flex;">
+        <h6 class="first" style="font-weight:bold;margin-top: .5rem">Department:</h6>&nbsp;&nbsp;
+        <p-dropdown [options]="departmentOptionsdummy" placeholder="Select a department" [showClear]="true"></p-dropdown>
     
       </div>
       
-      <div>
-        <h6 class="first">Year of Audit</h6>
+      <div style="display:flex;">
+        <h6 class="first" style="font-weight:bold;margin-top: .5rem">Year of Audit:</h6>&nbsp;&nbsp;
         <p-dropdown id="input1" [options]="yearOptions" [(ngModel)]="start" placeholder="Start(yyyy)" [showClear]="true">
         </p-dropdown>
       </div>
-      
-      </div>
       <div>
-        <button class="btn btn-info" style="margin-top: 1rem;font-size:inherit" (click)="show=true;">Fetch Details</button>
+        <button class="btn btn-info" style="font-size:inherit" (click)="show=true;">Fetch Details</button>
     
       </div>
+      </div>
+      
     
     </div>
 
-<p-tabView>
+<p-tabView *ngIf="show">
   <p-tabPanel header="View All">
     <div class="p-col-12 p-md-12 p-lg-12">
       <p-table [columns]="cols" [value]="preAuditData" [style]="{'font-size':'12px'}" [paginator]="true" [rows]="10"
@@ -94,18 +89,12 @@
             <div style="display:flex;justify-content: space-around;padding:2rem 0 2rem 0">
               <p-dropdown [options]="risks" [(ngModel)]="currentRisk.riskSubject" placeholder="Select a Risk Parameter"
                 [showClear]="true"></p-dropdown>
-                <span class="ui-float-label">
-                    <input id="float-input" type="text" size="20"[(ngModel)]="currentRisk.riskAmount" (ngModelChange)="currentRisk.riskAmount<100000?currentRisk.riskScore = 2:currentRisk.riskScore = 3;" > 
-                    <label>Risk Amount</label>
-                
-                
-                  </span>
-                  <span class="ui-float-label">
-                      <input id="float-input" type="text" size="20"[(ngModel)]="currentRisk.riskSCore"> 
-                      <label>Risk Score</label>
+             
+                    <input id="" type="text" size="20"[(ngModel)]="currentRisk.riskAmount" placeholder="Risk Amount" (ngModelChange)="currentRisk.riskAmount<100000?currentRisk.riskScore = 2:currentRisk.riskScore = 3;" > 
+                    
                   
-                  
-                    </span>
+                      <input  type="text" size="20" placeholder="Risk Score" [(ngModel)]="currentRisk.riskScore"> 
+                      
             
              
               <input type="file" (change)="selectFile($event)">
@@ -209,7 +198,7 @@
                     {{rowData[col.field]}}
                 </td>
                 <td style = "text-align: center">
-                  <button class="btn btn-info" type="button" pButton  (click)="showDialogToAdd(rowData)" label="Add"><i class= "pi pi-pencil"></i></button>
+                  <button class="btn btn-info"  style = "height: 30px;width: 50%" type="button" pButton  (click)="showDialogToAdd(rowData)"><i class= "pi pi-pencil"></i></button>
                 </td>
             </tr>
         </ng-template>
@@ -256,8 +245,8 @@
         </div>
         <p-footer>
             <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                <button class= "btn btn-success" type="button" pButton  (click)="save()" label="Save"><i class="pi pi-check"></i></button>
-                <button  class= "btn btn-danger"type="button" pButton (click)="delete()" label="Delete"><i class="pi pi-minus"></i></button>
+                <button class= "btn btn-success" (click)="save()"><i class="pi pi-check"></i></button>
+                <button  class= "btn btn-danger"  (click)="delete()"><i class="pi pi-minus"></i></button>
                 
             </div>
         </p-footer>
