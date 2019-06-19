@@ -1,79 +1,74 @@
-
-
-
-<form autocomplete="on" [formGroup]="departmentForm" (ngSubmit)="onClick()">
 <div class="ui-g ui-fluid">
- 
-    <div class="ui-g-2">
-<h6>Department Name</h6>
 
-<!-- <p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands" (completeMethod)="filterBrands($event)" [size]="30"
+  <div class="ui-g-2">
+    <h6>Department Name</h6>
+
+    <!-- <p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands" (completeMethod)="filterBrands($event)" [size]="30"
     [minLength]="1" [dropdown]="true">
     <ng-template let-brand pTemplate="item">
         <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
         </div>
     </ng-template>
 </p-autoComplete> -->
-<input    formControlName="id"  id="input" type="text" size="30" pInputText formControlName="deptsel"  class="form-control"
-    placeholder="Department name"  >
-<br><br>
- 
-<h6>Department ID</h6>
-<input id="input" type="text" size="30" pInputText formControlName="id"  class="form-control"> <br><br>
-
-
-<h6> Additional Department Name</h6>
-<input id="input" type="text" size="30" pInputText formControlName="altname"> <br><br>
-<h6>Subject matter</h6>
-<textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" formControlName="submatter"></textarea>
-
-</div>
- 
-<div class="ui-g-2" style="text-align: center;" >
+    <input id="depName" type="text" size="30" pInputText [(ngModel)]="department.name" placeholder="Department name">
     <br><br>
-   <h6>Location </h6>   <br>
-                
-    <h6>URL </h6>   <br> <br>
+
+    <h6>Department ID</h6>
+    <input id="depId" type="text" size="30" pInputText [(ngModel)]="department.id"> <br><br>
+
+
+    <h6> Additional Department Name</h6>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="department.altname"> <br><br>
+    <h6>Subject matter</h6>
+    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="department.subjectMatter"></textarea>
+
+  </div>
+
+  <div class="ui-g-2" style="text-align: center;">
+    <br><br>
+    <h6>Location </h6> <br>
+
+    <h6>URL </h6> <br> <br>
     <h6>Telephone </h6> <br><br>
     <h6>Email</h6> <br><br>
     <h6>Organization Level</h6> <br><br>
-    
-  </div>             
 
-<div class="ui-g-2" >
-   
-    
-    <br><br>
-      <input id="input" type="text" size="30" pInputText formControlName="loc"> <br><br>
-      <input id="input" type="text" size="30" pInputText formControlName="url"> <br><br>
-      <input id="input" type="text" size="30" pInputText formControlName="phone"> <br><br>
-      <input id="input" type="text" size="30" pInputText formControlName="mail"> <br><br><br>
-      <!-- <p-dropdown [options]="organizationlevel" [(ngModel)]="organizationlevel" placeholder="Select a organizationlevel" [showClear]="true"></p-dropdown> -->
-    </div>
-
-<div class="ui-g-2" style="margin-top: 0rem ;text-align: center">
-  <br>
-  <h6>Postal Code</h6><br><br>
-  
-  <h6>Address</h6><br><br>
   </div>
 
-  <div class="ui-g-2" >
-    <br>
-    <input id="input" type="text" size="30" pInputText formControlName="pincode"> <br><br>
-      <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" formControlName="address"></textarea>
+  <div class="ui-g-2">
+
+
     <br><br>
-     
-      <button pButton type="button" (click)="openAudit()" label="Add Post" class="ui-button-success"></button>
-      <br><br>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="department.location"> <br><br>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="department.url"> <br><br>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="department.phone"> <br><br>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="department.mail"> <br><br><br>
+    <p-dropdown [options]="organizationlevel" [(ngModel)]="department.level" placeholder="Select a level" [showClear]="true"></p-dropdown>
+  </div>
 
-      <button pButton type="button" (click)="openScheme()" label="Add Scheme" class="ui-button-success"></button>
-    
-    </div>
-  
-  </div >      
+  <div class="ui-g-2" style="margin-top: 0rem ;text-align: center">
+    <br>
+    <h6>Postal Code</h6><br><br>
 
-  
+    <h6>Address</h6><br><br>
+  </div>
+
+  <div class="ui-g-2">
+    <br>
+    <input id="input" type="text" size="30" pInputText [(ngModel)]="department.pincode"> <br><br>
+    <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="department.address"></textarea>
+    <br><br>
+
+    <button pButton type="button" (click)="openAudit()" label="Add Post" class="ui-button-success"></button>
+    <br><br>
+
+    <button pButton type="button" (click)="openScheme()" label="Add Scheme" class="ui-button-success"></button>
+
+  </div>
+
+</div>
+
+
 <!----
     <div class="ui-g-3" >
     
@@ -99,239 +94,241 @@
 </div> ---->
 
 <!--add schemes table is below-->
-  <div formArrayName="schemesArray" *ngFor="let scheme of schemesArray.controls; index as i" >
-    <p-table *ngIf = "openscheme" [columns]="mem4Cols" [value]="mem4Data">
-        <ng-template pTemplate="header" let-columns>
-            <h4>Add Schemes</h4>
-            <tr>
-               <th *ngFor="let col of columns" style="width:8em" >
-                  {{col.header}}
-               
-                </th>
-               </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData>
-            <tr>
-             <td pEditableColumn>
-                 <p-cellEditor>
-                   <ng-template pTemplate="input">
-                      <p-dropdown [options]="schemes"  formControlName="scheme.nameofscheme"  [style]="{'width':'100%'}" required></p-dropdown>
-                      <!-- (ngModelChange)="check(rowData)"  -->
-                  </ng-template>
-                   <ng-template pTemplate="output">
-                     {{rowData.nameofscheme}}
-                   </ng-template>
-     
-                 </p-cellEditor>
 
-               </td> 
-               <td pEditableColumn>
-                   <p-cellEditor>
-                     <ng-template pTemplate="input">
-                        <p-dropdown editable="true" [options]="startdate" formControlName="scheme.startdate" [style]="{'width':'100%'}"></p-dropdown>
-                     </ng-template>
-                     <ng-template pTemplate="output">
-                       {{rowData.startdate}}
-                     </ng-template>
-       
-                   </p-cellEditor>
-                 </td> 
-                 <td pEditableColumn>
-                     <p-cellEditor>
-                       <ng-template pTemplate="input">
-                          <p-dropdown editable="true" [options]="enddate" formControlName="scheme.enddate" [style]="{'width':'100%'}"></p-dropdown>  
-                       </ng-template>
-                       <ng-template pTemplate="output">
-                         {{rowData.enddate}}
-                       </ng-template>
-         
-                     </p-cellEditor>
-                   </td>       
-             </tr>   
-    </ng-template></p-table>
-    <div  *ngIf = "openscheme" style="color:green;text-align: right;">
-        <button (click)="addRow1()"class="fa fa-plus-circle" style="font-size: xx-medium" aria-hidden="true"></button></div>
-   </div>  
-            
+  <p-table *ngIf="openscheme" [columns]="schemeCols" [value]="department.schemes">
+    <ng-template pTemplate="header" let-columns>
+      <h4>Add Schemes</h4>
+      <tr>
+        <th *ngFor="let col of columns" style="width:8em">
+          {{col.header}}
+
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-rowIndex>
+      <tr>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <p-dropdown [options]="schemeOptions" [(ngModel)]="rowData.schemeName" [style]="{'width':'100%'}" required>
+              </p-dropdown>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.schemeName}}
+            </ng-template>
+
+          </p-cellEditor>
+
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input type="text" pInputText [(ngModel)]="rowData.startDate"
+                [style]="{'width':'100%'}">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.startDate}}
+            </ng-template>
+
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input type="text" pInputText [(ngModel)]="rowData.endDate"
+                [style]="{'width':'100%'}">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.endDate}}
+            </ng-template>
+
+          </p-cellEditor>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div *ngIf="openscheme" style="color:green;text-align: right;">
+    <button (click)="addNewScheme()" class="fa fa-plus-circle" style="font-size: xx-medium" aria-hidden="true"></button>
+  </div>
+
+
 
 <!-- "add post" table below-->
+  <p-table *ngIf="openaudit" [columns]="postCols" [value]="department.posts">
+    <ng-template pTemplate="header" let-columns>
+      <h4>Add Posts</h4>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex>
+      <tr>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
 
-<div formArrayName="Audits" *ngFor="let auditt of Audits.controls; index as i">
-   <p-table *ngIf = "openaudit" [columns]="mem1Cols" [value]="mem1Data">
-       <ng-template pTemplate="header" let-columns>
-          <h4>Add Posts</h4>
-            <tr>
-                <th *ngFor="let col of columns">
-                  {{col.header}}
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-             <td pEditableColumn >
-                 <p-cellEditor>
-                   <ng-template pTemplate="input">
-                    
-                     <input pInputText type="text" formControlName=auditt.post>
-                   </ng-template>
-                   <ng-template pTemplate="output">
-                     {{rowData.post}}
-                   </ng-template>
-     
-                 </p-cellEditor>
-               </td> 
-               <td pEditableColumn>
-                   <p-cellEditor>
-                     <ng-template pTemplate="input">
-                       <input pInputText type="text" formControlName=auditt.description>
-                     </ng-template>
-                     <ng-template pTemplate="output">
-                       {{rowData.description}}
-                     </ng-template>
-       
-                   </p-cellEditor>
-                 </td> 
-                 <td pEditableColumn>
-                     <p-cellEditor>
-                       <ng-template pTemplate="input">
-                         <input pInputText type="text" formControlName=auditt.email>
-                       </ng-template>
-                       <ng-template pTemplate="output">
-                         {{rowData.email}}
-                       </ng-template>
-         
-                     </p-cellEditor>
-                   </td>       
-             </tr>   
-    </ng-template></p-table>
-            
+              <input pInputText type="text" [(ngModel)]="rowData.postName">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.postName}}
+            </ng-template>
 
-<div  *ngIf = "openaudit" style="color:green;text-align: right;">
-  <button (click)="addRow()"class="fa fa-plus-circle" style="font-size: xx-medium" aria-hidden="true"></button>
-</div>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="rowData.description">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.description}}
+            </ng-template>
 
-</div>
+          </p-cellEditor>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="rowData.email">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{rowData.email}}
+            </ng-template>
+
+          </p-cellEditor>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+  <div *ngIf="openaudit" style="color:green;text-align: right;">
+    <button (click)="addNewPost()" class="fa fa-plus-circle" style="font-size: xx-medium" aria-hidden="true"></button>
+  </div>
+
 
 <!--"add units"table below-->
 <div>
- 
+
   <br><br>
   <p-fieldset legend="Add units" [toggleable]="true" [collapsed]="true">
-        <p-table [columns]="memCols" [value]="memData">
-   <ng-template pTemplate="header" let-columns>
-            <tr >
-               
-                <th *ngFor="let col of columns">
-                  {{col.header}}
-                  </th>
-                
-              </tr>
-        </ng-template>
-        
-   <ng-template pTemplate="body" let-rowData let-columns="columns">
-           <tr>
-            <td pEditableColumn>
-                <p-cellEditor>
-                  <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="rowData.unitName">
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                    {{rowData.unitName}}
-                  </ng-template>
-    
-                </p-cellEditor>
-              </td> 
-              <td pEditableColumn>
-                  <p-cellEditor>
-                    <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="rowData.unitId">
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                      {{rowData.unitId}}
-                    </ng-template>
-      
-                  </p-cellEditor>
-                </td> 
-                <td pEditableColumn>
-                    <p-cellEditor>
-                      <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="rowData.additional">
-                      </ng-template>
-                      <ng-template pTemplate="output">
-                        {{rowData.additional}}
-                      </ng-template>
-        
-                    </p-cellEditor>
-                  </td>  
-                  <td pEditableColumn>
-                      <p-cellEditor>
-                        <ng-template pTemplate="input">
-                          <input pInputText type="text" [(ngModel)]="rowData.location">
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                          {{rowData.additional}}
-                        </ng-template>
-          
-                      </p-cellEditor>
-                    </td>    
-                    
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                          <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.email">
-                          </ng-template>
-                          <ng-template pTemplate="output">
-                            {{rowData.email}}
-                          </ng-template>
-            
-                        </p-cellEditor>
-                      </td>  
-                      <td pEditableColumn>
-                          <p-cellEditor>
-                            <ng-template pTemplate="input">
-                              <input pInputText type="text" [(ngModel)]="rowData.linked">
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                              {{rowData.linked}}
-                            </ng-template>
-              
-                          </p-cellEditor>
-                        </td>      
-            </tr>   
-   </ng-template>
- 
- </p-table>         
- 
-                
-           
-<div style="color:green;text-align: right;">
-  <button (click)="addUnitdetails()" class="fa fa-plus-circle" style="font-size: xx-medium" aria-hidden="true"></button></div>
-</p-fieldset>
-<p-dialog header="Other Details" [(visible)]="showdialog" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
-        [maximizable]="true" [baseZIndex]="10000">
-  <p-table  *ngIf = "showdialog" [columns]="mem3Cols" [value]="mem3Data">
-           <ng-template pTemplate="header" let-columns >
-               <tr>
-                   <th *ngFor="let col of columns">
-                     {{col.header}}
-                   </th>
-               </tr>
-           </ng-template>
-           <ng-template pTemplate="body" let-rowData let-columns="columns" let-columns="columns">
-               <tr>
-                   <td *ngFor="let col of columns">
-                     {{rowData[col.field]}}
-                   </td>
-                   
-                 </tr>
-           </ng-template>
-           
-          
-   </p-table>
-   </p-dialog>
+    <p-table [columns]="subUnitCols" [value]="department.units">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex>
+        <tr>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.unitName">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.unitName}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.unitId">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.unitId}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.altUnitName">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.altUnitName}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.location">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.location}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.email">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.email}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input pInputText type="text" [(ngModel)]="rowData.linkedTo">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{rowData.linkedTo}}
+              </ng-template>
+
+            </p-cellEditor>
+          </td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+
+
+
+    <div style="color:green;text-align: right;">
+      <button (click)="addNewUnit()" class="fa fa-plus-circle" style="font-size: xx-medium"
+        aria-hidden="true"></button></div>
+  </p-fieldset>
+ <!--  <p-dialog header="Other Details" [(visible)]="showdialog" [modal]="true" [responsive]="true"
+    [style]="{width: '350px', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <p-table *ngIf="showdialog" [columns]="mem3Cols" [value]="mem3Data">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns" let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td>
+
+        </tr>
+      </ng-template>
+
+
+    </p-table>
+  </p-dialog> -->
 </div>
 
-<button pButton  label="Create" [disabled]="!departmentForm.valid" type="submit" ></button>
+<button pButton label="Create" [disabled]="!department.name" (click)="addDepartment()"></button>
 <br>
 <br>
-</form>

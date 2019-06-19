@@ -2,284 +2,142 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem, MenuItem } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { AuditHttpService } from '../utility/auditHttpService';
-import { FormGroup, FormArray , FormBuilder, Validators  } from '@angular/forms';
-import { UserService } from '../user.service';
-// import { ApiService } from '../api.service';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { DepartmentVO } from './department.model';
+
 @Component({
   selector: 'app-adddepartment',
   templateUrl: './adddepartment.component.html',
   styleUrls: ['./adddepartment.component.css'],
-  providers : [UserService]
+  providers: [MessageService]
 })
 export class AdddepartmentComponent implements OnInit {
-  selecthead: SelectItem[];
-  items: MenuItem[];
-  item: SelectItem[];
-  selectlocation: SelectItem[];
-  values: string[];
-  classification: SelectItem[];
+
+  department: DepartmentVO;
+  organizationlevel: SelectItem[];
   openaudit: boolean;
+  openscheme: boolean;
+  schemeCols: { field: string; header: string; }[];
+  schemeOptions: SelectItem[];
+  postCols: { field: string; header: string; }[];
+  subUnitCols: { field: string; header: string; }[];
+
+
+
+
+
   showdialog: boolean;
-  memData: any;
-  departmentForm: FormGroup;
- 
-  memCols: { field: string; header: string; }[];
-  mem1Cols: { field: string; header: string; }[];
-  mem2Cols: { field: string; header: string; }[];
-  mem3Cols: { field: string; header: string; }[];
-  mem4Cols: { field: string; header: string; }[];
-   
-  mem1Data: any;
-  mem2Data: any;
-  mem3Data: any;
-  mem4Data = [];
-  results: string[];
-  countries: any[];
+
+
   brands: string[] = ['Urban Local Bodies', 'Department of Education', 'Department of Transportation', 'Public Health And Family Welfare', 'Bengaluru Development Authority'];
   brand: string;
   filteredBrands = [];
   selectedDept = {};
-  addForm: FormGroup;
-  
-  rows: FormArray;
-  itemForm: FormGroup;
-  schemes: SelectItem[];
-  startdate: SelectItem[];
-  enddate: SelectItem[];
-  openscheme: boolean;
-  links: SelectItem[];
-  organizationlevel: SelectItem[];
-  // schemesArray:FormArray;
-  // Audits:FormArray;
-  // api: ApiService[];
-  constructor(private auditHttpService: AuditHttpService, private fb: FormBuilder ,private userService: UserService ) { }
- 
+
+
+
+
+  constructor(private auditHttpService: AuditHttpService, private messageService: MessageService) { }
+
 
   ngOnInit() {
-    this.departmentForm = this.fb.group({
-      id: ['', [Validators.required]],
-      deptsel: ['',],
-      altname: ['',],
-      loc: ['',],
-      url: [''],
-      phone: ['', [Validators.pattern('^[0-9]{1,14}')]],
-      mail: ['', [Validators.pattern(
-        '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,3}'
-      )]],
-      pincode: [''],
-      address: [''],
-      submatter: [''],
-      schemeArray: this.fb.array([
-        this.fb.group({
-          nameofscheme: [''],
-          startdate: [''],
-          enddate: [''],
-        })
-      ]),
-      audittArray: this.fb.array([
-        this.fb.group({
-          post: [''],
-          description: [''],
-          email: [''],
-        })
-      ])
-    });
 
-  
+    this.resetDepartment();
 
-    this.auditHttpService.getService('./assets/jsons/memdata.json').subscribe(data => {
-      this.memData = data;
-    });
-    this.auditHttpService.getService('./assets/jsons/mem1data.json').subscribe(data => {
-      this.mem1Data = data;
-    });
-    this.auditHttpService.getService('./assets/jsons/mem4data.json').subscribe(data => {
-      this.mem4Data = data;
-    });
-    
-
-    this.auditHttpService.getService('./assets/jsons/mem3data.json').subscribe(data => {
-      this.mem3Data = data;
-    });
-    this.mem4Cols = [{ field: 'nameofscheme', header: 'Name of Scheme' },
-    { field: 'startdate', header: 'Start Date' },
-    { field: 'enddate', header: 'End Date' }];
-    this.organizationlevel = [{ label: 'Department Level', value: 'Department Level' },
-   { label: ' Audit Unit Level', value: 'Audit Unit Level' },
-   { label: 'Implementation Unit Level', value: 'Implementation Unit Level' }];
-
-    this.startdate = [
-      { label: '04/05/2013', value: '04/05/2013' },
-      { label: '24/09/2015', value: '24/09/2015' }
+    this.organizationlevel = [
+      { label: 'Apex', value: 'Apex' },
+      { label: ' Audit Unit', value: 'Audit Unit' },
+      { label: 'Implementing Unit', value: 'Implementing Unit' }
     ];
-    this.enddate = [
-      { label: '04/05/2018', value: '04/05/2018' },
-      { label: '24/09/2019', value: '24/09/2019' }
+    this.schemeCols = [
+      { field: 'nameofscheme', header: 'Name of Scheme' },
+      { field: 'startdate', header: 'Start Date' },
+      { field: 'enddate', header: 'End Date' }
+    ];
+    this.postCols = [
+      { field: 'postName', header: 'Post' },
+      { field: 'description', header: 'Description' },
+      { field: 'email', header: 'Email' }
+    ];
+    this.subUnitCols = [
+      { field: 'unitName', header: ' Unit Name' },
+      { field: 'unitId', header: 'Unit ID' },
+      { field: 'altUnitName', header: 'Additional Unit Name' },
+      { field: 'location', header: ' Location' },
+      { field: 'email', header: 'Email' },
+      { field: 'linkedTo', header: 'Linked to' }
     ];
 
-    this.mem1Cols = [{ field: 'post', header: 'Post' },
-    { field: 'description', header: 'Description' },
-    { field: 'email', header: 'Email' }];
 
-    this.schemes = [{ label: 'Universal Health Coverage', value: 'Universal Health Coverage' },
+    this.schemeOptions = [{ label: 'Universal Health Coverage', value: 'Universal Health Coverage' },
     { label: ' Expansion of Namma Metro', value: 'Expansion of Namma Metro' }];
-
-    this.links = [{ label: 'BBMP', value: 'BBMP' },
-    { label: ' Expansion of Nammasf Metro', value: 'Expansion of Namma Metro' }];
-
-
-    this.mem3Cols = [{ field: 'phone', header: 'Phone' },
-    { field: 'postalcode', header: 'Postal Code' },
-    { field: 'address', header: 'Address' }];
-
-
-    this.memCols = [{ field: 'unitName', header: ' Unit Name' },
-    { field: 'unitId', header: 'Unit ID' },
-    { field: 'additional', header: 'Additional Unit Name' },
-    { field: 'location', header: ' Location' },
-    { field: 'email', header: 'Email' },
-    { field: 'linked', header: 'Linked to' }
-    ]}
-    onClick() {
-      // this.apiservice.addDep(this.departmentForm.value);
-      console.log(this.departmentForm.value);
-      this.userService.adDep(this.departmentForm.value).subscribe(
-        response =>{
-          console.log('response',response);
-        },
-        error =>{
-          console.log('response',error);
-        }
-      );
-    
-      console.log(this.departmentForm);
-      console.log(this.departmentForm.value.deptsel);
-      console.log(this.departmentForm.value.organizationlevel);
-      console.log(this.departmentForm.value.addsc);
-      console.log(this.departmentForm.value.id);
-      console.log(this.departmentForm.value.altname);
-      console.log(this.departmentForm.value.loc);
-      console.log(this.departmentForm.value.url);
-      console.log(this.departmentForm.value.phone);
-      console.log(this.departmentForm.value.mail);
-      console.log(this.departmentForm.value.pincode);
-      console.log(this.departmentForm.value.address);
-      console.log(this.departmentForm.value.submatter);
   }
-    addRow() {
-      this.mem1Data.push({
-        post: '',
-        description: '',
-        email: ' '
-      });
-    } 
-    addUnitdetails() {
-      this.memData.push({
-        unitName: '',
-        unitId: '',
-        additional: '',
-        location: '',
-        email: ''
-  
-      });
-    }  
-    
-    addRow1() {
-      this.mem4Data.push({
-        nameofscheme:null,
-        startdata:null,
-        enddata: null
-      });
-    }
-  get schemesArray() {
-    return this.departmentForm.get('schemeArray') as FormArray;
-  }
-  addScheme() {
-    this.schemesArray.push(this.fb.group({
-      nameofscheme: [''],
-      startdate: [''],
-      enddate: [''],
-    }));
-  }
-  get Audits()
-  {
-    return this.departmentForm.get('audittArray') as FormArray;
-  }
- 
-    addAudits() {
-      this.Audits.push(this.fb.group({
-        post: [''],
-        description: [''],
-        email: [''],
-      }));
 
-    }
+  addNewPost() {
+    this.department.posts.push({
+      postName: '',
+      description: '',
+      email: ' '
+    });
+  }
+  addNewUnit() {
+    this.department.units.push({
+      unitName: '',
+      unitId: '',
+      altUnitName: '',
+      location: '',
+      email: '',
+      linkedTo: ''
+
+    });
+  }
+
+  addNewScheme() {
+    this.department.schemes.push({
+      schemeName: '',
+      startDate: '',
+      endDate: '',
+    });
+  }
+
   openAudit() {
-      console.log('in open audit');
-      this.openaudit = this.openaudit === true ? false : true;
-     }
-    openScheme() {
-      console.log('in open scheme');
-      this.openscheme = this.openscheme === true ? false : true;
+    console.log('in open audit');
+    this.openaudit = this.openaudit === true ? false : true;
+  }
+  openScheme() {
+    console.log('in open scheme');
+    this.openscheme = this.openscheme === true ? false : true;
+  }
+
+  addDepartment() {
+    console.log('department', this.department);
+    this.auditHttpService.httpPostService('/myapp/org', this.department).subscribe(res => {
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Created Successfully' });
+      this.resetDepartment();
+    },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Creation Failue. Please try later.' });
+      }
+    )
+  }
+
+  resetDepartment() {
+    this.department = {
+      name: '',
+      id: '',
+      code: '',
+      altname: '',
+      subjectMatter: '',
+      location: '',
+      url: '',
+      phone: '',
+      mail: '',
+      pincode: null,
+      address: '',
+      level: '',
+      schemes: [],
+      posts: [],
+      units: []
     }
+  }
 }
-
-// check(rowd){
-//       console.log(rowd);
-//     }
-    
-   
-    
-    
-  //   
-  // showDialog() {
-
-  //   console.log('in open info');
-  //   this.showdialog = this.showdialog === true ? false : true;
-  // }
-  // filterBrands(event) {
-  //   this.filteredBrands = [];
-  //   for (let i = 0; i < this.brands.length; i++) {
-  //       let brand = this.brands[i];
-  //       if(brand.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
-  //           this.filteredBrands.push(brand);
-  //       }
-  //   }
-
-
-  // }
-  //   filterCountrySingle(event) {
-  //   let query = event.query;
-  //   this.filteredBrands = this.filterCountry(query, this.brands);
-  // }
-  // filterCountry(query, countries: any[]): any[] {
-  //   //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-  //   let filtered: any[] = [];
-  //   for (let i = 0; i < this.brands.length; i++) {
-  //     let country = countries[i];
-  //     if (country.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-  //       filtered.push(country);
-  //     }
-  //   }
-  //   return filtered;
-  // }
-  //   selectDepartment(dept) {
-  //   console.log('in seldept' + this.filteredBrands);
-  //   if (dept === 'Urban Local Bodies') {
-  //     this.selectedDept = {
-  //       name: dept, id: 'AD4680', altname: dept, loc: 'Bengaluru', url: ' http://www.phwkar.gov.in', phone: '08044894483', mail: 'publichealth@karnata.in',
-  //       pincode: '505516', address: 'MS Building, Kalyana Suraksha Bhavan, Ambedkar Nagar'
-  //     };
-  //   } else if (dept === 'Bengaluru Development Authority') {
-  //     this.selectedDept = {
-  //       name: dept, id: 'AD46123', altname: dept, loc: 'Bengaluru', url: ' ', phone: '', mail: 'bda@karnataka.in',
-  //       pincode: '', address: ''
-  //     };
-  //   }
-  // }
-
-  // addDepartment(dept) {
-  //   if (dept === 'Labour Department') {
-  //     confirm(dept + ' does not exits. Do you want to create new?');
-  //     this.selectedDept = {};
-  // }

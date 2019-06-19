@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 @Injectable()
 export class AuditHttpService {
+    baseUrl = 'http://192.168.1.14:8000'
     constructor(private httpClient: HttpClient) { }
     httpOptions = {
         headers: new HttpHeaders({
@@ -16,7 +17,7 @@ export class AuditHttpService {
     }
 
     public httpPostService(url: string, data: any): Observable<any> {
-        return this.httpClient.post<any>(url, data, this.httpOptions);
+        return this.httpClient.post<any>(this.baseUrl + url, data, this.httpOptions);
     }
 
     public deleteService(url: string, header: { key: string, value: string }[]): Observable<any> {
