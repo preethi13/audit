@@ -23,7 +23,12 @@ export class RiskOntologyComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [{ field: 'riskId', header: 'Risk ID' },
-    { field: 'riskSubject', header: 'Risk Description' }];
+    { field: 'riskSubject', header: 'Risk Description' },
+    { field: 'auditOffice', header: 'Audit Office' },
+    { field: 'organizationLevel', header: 'Organization Level' },
+    { field: 'ruleSet', header: 'Rule Set' }
+
+  ];
     this.auditHttpService.getService('./assets/jsons/riskontology.json').subscribe(data => {
       this.risks = data;
     });

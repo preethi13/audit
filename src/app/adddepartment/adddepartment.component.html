@@ -1,3 +1,6 @@
+
+
+
 <form autocomplete="on" [formGroup]="departmentForm" (ngSubmit)="onClick()">
 <div class="ui-g ui-fluid">
  
@@ -11,7 +14,7 @@
         </div>
     </ng-template>
 </p-autoComplete> -->
-<input id="input" type="text" size="30" pInputText formControlName="deptsel"  class="form-control"
+<input    formControlName="id"  id="input" type="text" size="30" pInputText formControlName="deptsel"  class="form-control"
     placeholder="Department name"  >
 <br><br>
  
@@ -33,6 +36,7 @@
     <h6>URL </h6>   <br> <br>
     <h6>Telephone </h6> <br><br>
     <h6>Email</h6> <br><br>
+    <h6>Organization Level</h6> <br><br>
     
   </div>             
 
@@ -43,13 +47,14 @@
       <input id="input" type="text" size="30" pInputText formControlName="loc"> <br><br>
       <input id="input" type="text" size="30" pInputText formControlName="url"> <br><br>
       <input id="input" type="text" size="30" pInputText formControlName="phone"> <br><br>
-      <input id="input" type="text" size="30" pInputText formControlName="mail"> <br><br>
-     
+      <input id="input" type="text" size="30" pInputText formControlName="mail"> <br><br><br>
+      <!-- <p-dropdown [options]="organizationlevel" [(ngModel)]="organizationlevel" placeholder="Select a organizationlevel" [showClear]="true"></p-dropdown> -->
     </div>
 
 <div class="ui-g-2" style="margin-top: 0rem ;text-align: center">
   <br>
   <h6>Postal Code</h6><br><br>
+  
   <h6>Address</h6><br><br>
   </div>
 
@@ -67,7 +72,7 @@
     </div>
   
   </div >      
-</form>
+
   
 <!----
     <div class="ui-g-3" >
@@ -94,10 +99,8 @@
 </div> ---->
 
 <!--add schemes table is below-->
-<div >
- 
- 
-   <p-table *ngIf = "openscheme" [columns]="mem4Cols" [value]="mem4Data">
+  <div formArrayName="schemesArray" *ngFor="let scheme of schemesArray.controls; index as i" >
+    <p-table *ngIf = "openscheme" [columns]="mem4Cols" [value]="mem4Data">
         <ng-template pTemplate="header" let-columns>
             <h4>Add Schemes</h4>
             <tr>
@@ -112,8 +115,8 @@
              <td pEditableColumn>
                  <p-cellEditor>
                    <ng-template pTemplate="input">
-                      <p-dropdown [options]="schemes" [(ngModel)]="rowData.nameofscheme" (ngModelChange)="check(rowData)" [style]="{'width':'100%'}" required></p-dropdown>
-                      
+                      <p-dropdown [options]="schemes"  formControlName="scheme.nameofscheme"  [style]="{'width':'100%'}" required></p-dropdown>
+                      <!-- (ngModelChange)="check(rowData)"  -->
                   </ng-template>
                    <ng-template pTemplate="output">
                      {{rowData.nameofscheme}}
@@ -125,7 +128,7 @@
                <td pEditableColumn>
                    <p-cellEditor>
                      <ng-template pTemplate="input">
-                        <p-dropdown editable="true" [options]="startdate" [(ngModel)]="rowData.startdate" [style]="{'width':'100%'}"></p-dropdown>
+                        <p-dropdown editable="true" [options]="startdate" formControlName="scheme.startdate" [style]="{'width':'100%'}"></p-dropdown>
                      </ng-template>
                      <ng-template pTemplate="output">
                        {{rowData.startdate}}
@@ -136,7 +139,7 @@
                  <td pEditableColumn>
                      <p-cellEditor>
                        <ng-template pTemplate="input">
-                          <p-dropdown editable="true" [options]="enddate" [(ngModel)]="rowData.enddate" [style]="{'width':'100%'}"></p-dropdown>  
+                          <p-dropdown editable="true" [options]="enddate" formControlName="scheme.enddate" [style]="{'width':'100%'}"></p-dropdown>  
                        </ng-template>
                        <ng-template pTemplate="output">
                          {{rowData.enddate}}
@@ -148,12 +151,12 @@
     </ng-template></p-table>
     <div  *ngIf = "openscheme" style="color:green;text-align: right;">
         <button (click)="addRow1()"class="fa fa-plus-circle" style="font-size: xx-medium" aria-hidden="true"></button></div>
-      </div>  
+   </div>  
             
 
 <!-- "add post" table below-->
 
-<div>
+<div formArrayName="Audits" *ngFor="let auditt of Audits.controls; index as i">
    <p-table *ngIf = "openaudit" [columns]="mem1Cols" [value]="mem1Data">
        <ng-template pTemplate="header" let-columns>
           <h4>Add Posts</h4>
@@ -169,7 +172,7 @@
                  <p-cellEditor>
                    <ng-template pTemplate="input">
                     
-                     <input pInputText type="text" [(ngModel)]="rowData.post">
+                     <input pInputText type="text" formControlName=auditt.post>
                    </ng-template>
                    <ng-template pTemplate="output">
                      {{rowData.post}}
@@ -180,7 +183,7 @@
                <td pEditableColumn>
                    <p-cellEditor>
                      <ng-template pTemplate="input">
-                       <input pInputText type="text" [(ngModel)]="rowData.description">
+                       <input pInputText type="text" formControlName=auditt.description>
                      </ng-template>
                      <ng-template pTemplate="output">
                        {{rowData.description}}
@@ -191,7 +194,7 @@
                  <td pEditableColumn>
                      <p-cellEditor>
                        <ng-template pTemplate="input">
-                         <input pInputText type="text" [(ngModel)]="rowData.email">
+                         <input pInputText type="text" formControlName=auditt.email>
                        </ng-template>
                        <ng-template pTemplate="output">
                          {{rowData.email}}
@@ -331,3 +334,4 @@
 <button pButton  label="Create" [disabled]="!departmentForm.valid" type="submit" ></button>
 <br>
 <br>
+</form>

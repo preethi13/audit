@@ -48,7 +48,8 @@ export class PreAuditComponent implements OnInit {
       { field: 'temporal?.start', header: 'From-To' },
       { field: 'riskScore', header: 'Risk Score' },
       { field: 'risklevel', header: 'Risk Level' },
-      { field: 'isSelected', header: 'Selected for Audit?' }
+      { field: 'isSelected', header: 'Selected for Audit?' },
+      { field: 'reason', header: 'Reason' }
     ];
     this.riskCols = [
       { field: 'riskSubject', header: 'Risk' },

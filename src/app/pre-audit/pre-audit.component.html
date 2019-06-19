@@ -5,7 +5,8 @@
       <div style="display:flex;">
         <h6 class="first" style="font-weight:bold;margin-top: .5rem">Department:</h6>&nbsp;&nbsp;
         <p-dropdown [options]="departmentOptionsdummy" placeholder="Select a department" [showClear]="true"></p-dropdown>
-    
+        <h6 class="first" style="font-weight:bold;margin-top: .5rem">Implementation unit:</h6>&nbsp;&nbsp;
+        <p-dropdown [options]="implementationunits" placeholder="Select an im plementation unit" [showClear]="true"></p-dropdown>
       </div>
       
       <div style="display:flex;">
@@ -52,6 +53,8 @@
           <p-card header="Department">
             <span class="ui-float-label" style="margin: 1.5rem">
                 <p-dropdown  id="input1" [options]="departmentOptions" [(ngModel)]="dept1" placeholder="Department"
+                [showClear]="true" [style]="{'width':'250px'}"></p-dropdown><br><br>
+                <p-dropdown  id="input1" [options]="departmentOptions" [(ngModel)]="dept1" placeholder="Audit unit"
                 [showClear]="true" [style]="{'width':'250px'}"></p-dropdown>
               <!-- <input id="float-input" type="text" pInputText style="width:90%;margin:1rem 0 1rem 0">
               <label for="float-input">Department</label> -->
@@ -65,7 +68,7 @@
           </p-card>
         </div>
       </div>
-      <div class="p-col-12 p-md-5 p-lg-5">
+      <div class="p-col-12 p-md-6 p-lg-5">
         <div class="box">
           <p-card header="Time Period">
             <span class="ui-float-label" style="margin: 1.5rem">

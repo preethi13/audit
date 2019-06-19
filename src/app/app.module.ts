@@ -11,6 +11,7 @@ import { AuditComponent } from './audit/audit.component';
 import { AuditHttpService } from './utility/auditHttpService';
 import {TableModule} from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
+// import {HttpHeaders} from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import { ParaOntologyComponent } from './para-ontology/para-ontology.component';
@@ -39,7 +40,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {FieldsetModule} from 'primeng/fieldset';
 import {KeyFilterModule} from 'primeng/keyfilter';
 import { GeographicComponent } from './geographic/geographic.component';
-
+import {OrderListModule} from 'primeng/primeng';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,6 @@ import { GeographicComponent } from './geographic/geographic.component';
     DashboardComponent,
     UserRolesComponent,
     GeographicComponent
-    
 ],
   imports: [
     BrowserModule,
@@ -82,8 +82,10 @@ import { GeographicComponent } from './geographic/geographic.component';
     AccordionModule,
     AutoCompleteModule,
     ChipsModule,
-    KeyFilterModule
-    
+    KeyFilterModule,
+    OrderListModule,
+  
+
   ],
   providers: [AuditHttpService],
   bootstrap: [AppComponent]
