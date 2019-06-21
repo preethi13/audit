@@ -22,27 +22,25 @@ export class AdddepartmentComponent implements OnInit {
   postCols: { field: string; header: string; }[];
   subUnitCols: { field: string; header: string; }[];
 
-
-
-
-
   showdialog: boolean;
-
-
-  brands: string[] = ['Urban Local Bodies', 'Department of Education', 'Department of Transportation', 'Public Health And Family Welfare', 'Bengaluru Development Authority'];
+  deptList = [];
   brand: string;
-  filteredBrands = [];
+  filteredDepts = [];
   selectedDept = {};
-
-
-
+  enableEdit: boolean;
 
   constructor(private auditHttpService: AuditHttpService, private messageService: MessageService) { }
-
 
   ngOnInit() {
 
     this.resetDepartment();
+
+    this.auditHttpService.getService('/myapp/deptlist').subscribe(data => {
+      this.deptList = data;
+    },
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Department List fetch failure.Please try later.' });
+      });
 
     this.organizationlevel = [
       { label: 'Apex', value: 'Apex' },
@@ -67,37 +65,20 @@ export class AdddepartmentComponent implements OnInit {
       { field: 'email', header: 'Email' },
       { field: 'linkedTo', header: 'Linked to' }
     ];
-
-
     this.schemeOptions = [{ label: 'Universal Health Coverage', value: 'Universal Health Coverage' },
     { label: ' Expansion of Namma Metro', value: 'Expansion of Namma Metro' }];
   }
 
   addNewPost() {
-    this.department.posts.push({
-      postName: '',
-      description: '',
-      email: ' '
-    });
+    this.department.posts.push({ postName: '', description: '', email: ' ' });
   }
-  addNewUnit() {
-    this.department.units.push({
-      unitName: '',
-      unitId: '',
-      altUnitName: '',
-      location: '',
-      email: '',
-      linkedTo: ''
 
-    });
+  addNewUnit() {
+    this.department.units.push({ unitName: '', unitId: '', altUnitName: '', location: '', email: '', linkedTo: '' });
   }
 
   addNewScheme() {
-    this.department.schemes.push({
-      schemeName: '',
-      startDate: '',
-      endDate: '',
-    });
+    this.department.schemes.push({ schemeName: '', startDate: '', endDate: '' });
   }
 
   openAudit() {
@@ -109,7 +90,7 @@ export class AdddepartmentComponent implements OnInit {
     this.openscheme = this.openscheme === true ? false : true;
   }
 
-  addDepartment() {
+  addorUpdateDepartment() {
     console.log('department', this.department);
     this.auditHttpService.httpPostService('/myapp/org', this.department).subscribe(res => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Created Successfully' });
@@ -118,7 +99,7 @@ export class AdddepartmentComponent implements OnInit {
       error => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Creation Failue. Please try later.' });
       }
-    )
+    );
   }
 
   resetDepartment() {
@@ -138,6 +119,25 @@ export class AdddepartmentComponent implements OnInit {
       schemes: [],
       posts: [],
       units: []
+    };
+  }
+
+  filterDepts(event) {
+    this.filteredDepts = [];
+    for (let i = 0; i < this.deptList.length; i++) {
+      const dept = this.deptList[i].name;
+      if (dept.toLowerCase().indexOf(event.query.toLowerCase()) == 0) {
+        this.filteredDepts.push(dept);
+      }
     }
   }
+
+  getDepartmentDetails() {
+    console.log(this.department.name);
+    this.enableEdit = true;
+    this.auditHttpService.getService('/assets/jsons/deptDetail.json').subscribe(data => {
+      this.department = data;
+    });
+  }
+
 }

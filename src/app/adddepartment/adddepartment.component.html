@@ -1,16 +1,16 @@
 <div class="ui-g ui-fluid">
 
-  <div class="ui-g-2">
+  <div class="ui-g-3">
     <h6>Department Name</h6>
 
-    <!-- <p-autoComplete [(ngModel)]="brand" [suggestions]="filteredBrands" (completeMethod)="filterBrands($event)" [size]="30"
-    [minLength]="1" [dropdown]="true">
-    <ng-template let-brand pTemplate="item">
-        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+    <p-autoComplete [(ngModel)]="department.name" [suggestions]="filteredDepts" (completeMethod)="filterDepts($event)" [size]="30"
+    [minLength]="1" (onSelect) = "getDepartmentDetails()">
+    <ng-template let-dept pTemplate="item">
+        <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">{{dept}}
         </div>
     </ng-template>
-</p-autoComplete> -->
-    <input id="depName" type="text" size="30" pInputText [(ngModel)]="department.name" placeholder="Department name">
+</p-autoComplete>
+    <!-- <input id="depName" type="text" size="30" pInputText [(ngModel)]="department.name" placeholder="Department name"> -->
     <br><br>
 
     <h6>Department ID</h6>
@@ -328,7 +328,10 @@
     </p-table>
   </p-dialog> -->
 </div>
+<div style="text-align: center;margin-top: 2rem">
+  <button class="btn btn-info" [disabled]="!department.name && enableEdit" (click)="addorUpdateDepartment()">Create</button>
+  <button class="btn btn-info"  style="margin-left: 1rem" [disabled]="!enableEdit" (click)="addorUpdateDepartment()">Update</button>
+</div>
 
-<button pButton label="Create" [disabled]="!department.name" (click)="addDepartment()"></button>
 <br>
 <br>
