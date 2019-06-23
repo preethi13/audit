@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem, MenuItem } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { AuditHttpService } from '../utility/auditHttpService';
-import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { DepartmentVO } from './department.model';
 
 @Component({
@@ -92,7 +91,7 @@ export class AdddepartmentComponent implements OnInit {
 
   addorUpdateDepartment() {
     console.log('department', this.department);
-    this.auditHttpService.httpPostService('/myapp/org', this.department).subscribe(res => {
+    this.auditHttpService.httpPostService('/myapp/deptlist', this.department).subscribe(res => {
       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Created Successfully' });
       this.resetDepartment();
     },
@@ -134,8 +133,9 @@ export class AdddepartmentComponent implements OnInit {
 
   getDepartmentDetails() {
     console.log(this.department.name);
+    const dept = this.deptList.filter(id => {this.department.name === id.name})[0].id;
     this.enableEdit = true;
-    this.auditHttpService.getService('/assets/jsons/deptDetail.json').subscribe(data => {
+    this.auditHttpService.getJSONWithMultipleCustomHeaders('/myapp/deptdetail',[{key:'deptId',value:dept}]).subscribe(data => {
       this.department = data;
     });
   }
